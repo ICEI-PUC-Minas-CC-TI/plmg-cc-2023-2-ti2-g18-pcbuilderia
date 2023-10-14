@@ -1,19 +1,20 @@
 package App.models;
 
-public class User {
-
+public class Usuario {
     private int id;
     private String nome;
     private String login;
     private String password;
+    private String cpf;
 
-    public User() {
+    public Usuario() {
     }
 
-    public User(String nome, String login, String password) {
+    public Usuario(String nome, String login, String password, String cpf) {
         this.nome = nome;
         this.login = login;
         this.password = password;
+        this.cpf = cpf;
     }
 
     public int getId() {
@@ -46,5 +47,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 }

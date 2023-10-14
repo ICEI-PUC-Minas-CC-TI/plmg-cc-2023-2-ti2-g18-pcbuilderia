@@ -1,5 +1,7 @@
 package App.dao;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -11,13 +13,13 @@ public class DAO {
         conexao = null;
     }
     public boolean conectar() {
-        String driverName = "Servers";
-        String serverName = "PostgreSQL 16";
-        String mydatabase = "test";
+        String driverName = "org.postgresql.Driver";
+        String serverName = "pcbuilderia.postgres.database.azure.com";
+        String mydatabase = "pcbuilder";
         int porta = 5432;
         String url = "jdbc:postgresql://" + serverName + ":" + porta +"/" + mydatabase;
-        String username = "postgres";
-        String password = "123";
+        String username = "pcbuilderadm@pcbuilderia";
+        String password = "Yanking123!";
         boolean status = false;
 
         try {
@@ -33,4 +35,23 @@ public class DAO {
 
         return status;
     }
+
+    public boolean close() {
+		boolean status = false;
+		
+		try {
+			conexao.close();
+			status = true;
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
+		return status;
+	}
+	
+	
+	public static String toMD5(String senha) throws Exception {
+		MessageDigest m=MessageDigest.getInstance("MD5");
+		m.update(senha.getBytes(),0, senha.length());
+		return new BigInteger(1,m.digest()).toString(16);
+	}
 }

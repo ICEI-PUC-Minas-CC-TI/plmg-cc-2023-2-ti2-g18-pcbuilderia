@@ -60,16 +60,20 @@
 </head>
 <body>
 <h2>Formulário de Login</h2>
-<form  method="post">
+<form  method="get">
     <label for="login">Login:</label>
-    <input type="text" id="login" name="login" required>
+    <input class="login" type="text" id="login" name="login" required>
 
     <label for="senha">Senha:</label>
-    <input type="password" id="senha" name="senha" required>
-    <a href="http://localhost:4567/user">
-        ir
-    </a>
-    <input type="submit" value="Enviar">
+    <input class="senha" type="password" id="senha" name="senha" required>
+
+    <label for="nome">Nome:</label>
+    <input  class="nome"type="text" id="nome" name="nome" required>
+
+    <label for="cpf">CPF:</label>
+    <input class="cpf" type="text" id="cpf" name="cpf" required>
+    <a  href="http://localhost:8080/cadastro">Enviar</a>
+    
 </form>
 </body>
 </html></title>

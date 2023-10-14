@@ -1,24 +1,26 @@
 package App.dao;
 
-import App.models.User;
+import App.models.Usuario;
 
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class UserDAO extends DAO{
-    public UserDAO() {
+public class UsuarioDAO extends DAO{
+    public UsuarioDAO() {
         super();
         conectar();
     }
 
 
-    public boolean insert(User user) {
+    public boolean insert(Usuario user) {
         boolean resp = false;
         try{
             Statement status = conexao.createStatement();
-            String sql = "INSERT INTO usuario (id, login, password, nome) "
-                    + "VALUES ("+user.getId()+ ", '" + user.getLogin() + "', '"
-                    + user.getPassword() + "', '" + user.getNome() + "');";
+            String sql = "INSERT INTO usuario (id, nome, login, password, cpf ) "
+                    + "VALUES ('"+user.getId() +"', '"+ user.getNome() + "', '"
+                    + user.getLogin() + "', '" + user.getPassword() + "', '"+ user.getCpf() + "');";
+            
+            
             System.out.println(sql);
             status.executeUpdate(sql);
             status.close();
