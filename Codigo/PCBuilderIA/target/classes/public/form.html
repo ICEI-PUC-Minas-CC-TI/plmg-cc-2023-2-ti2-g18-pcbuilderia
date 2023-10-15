@@ -1,8 +1,8 @@
 <!DOCTYPE html>
         <html lang="en">
         <head>
-        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="text/html; charset = UTF-8" http-equiv="content-type">
         <title>Formulário de Login</title>
     <style>
         body {
@@ -60,7 +60,7 @@
 </head>
 <body>
 <h2>Formulário de Login</h2>
-<form  method="get">
+<form method="post">
     <label for="login">Login:</label>
     <input class="login" type="text" id="login" name="login" required>
 
@@ -72,9 +72,31 @@
 
     <label for="cpf">CPF:</label>
     <input class="cpf" type="text" id="cpf" name="cpf" required>
-    <a  href="http://localhost:8080/cadastro">Enviar</a>
+    <button type="submit" onclick="submitForm()">Enviar</button>
     
 </form>
+<script>
+        function submitForm() {
+            var login = document.getElementById('login').value
+            var senha = document.getElementById('senha').value
+            var nome = document.getElementById('nome').value
+            var cpf = document.getElementById('cpf').value
+
+            console.log(login + senha + nome + cpf)
+
+            var xhr =  new XMLHttpRequest()
+            xhr.open("POST", "http://localhost:8080/cadastro", true)
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    console.log(xhr.responseText)
+                }
+            }
+            xhr.send("login=" + login + "&senha=" + senha + "&nome=" + nome + "&cpf=" + cpf);
+            
+    }
+</script>
+
 </body>
 </html></title>
 </head>

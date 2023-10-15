@@ -3,6 +3,8 @@ package App.services;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+
+
 import App.dao.DAO;
 import App.dao.UsuarioDAO;
 import App.models.Usuario;
@@ -13,17 +15,17 @@ public class UsuarioService {
 
     public String insert(Request request, Response response) throws Exception{
 		String login = request.queryParams("login");
+		String senha = request.queryParams("senha");
 		String nome = request.queryParams("nome");
 		String cpf = request.queryParams("cpf");
-		String password = request.queryParams("senha");
 		
 		String resp = "";
 		
-		Usuario usuario = new Usuario(nome, login, password, cpf);
-
+		Usuario usuario = new Usuario(nome, login, senha, cpf);
+		System.out.println(usuario.toString());
         if(usuarioDAO.insert(usuario) == true) {
             resp = "usuario (" + nome + ") criado!";
-            response.status(201); // 201 Created
+            response.status(200); // 201 Created
 		} else {
 			resp = "usuario (" + nome + ") não criado!";
 			response.status(404); // 404 Not found

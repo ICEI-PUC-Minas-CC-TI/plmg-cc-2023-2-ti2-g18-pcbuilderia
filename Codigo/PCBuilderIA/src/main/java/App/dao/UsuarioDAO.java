@@ -16,9 +16,9 @@ public class UsuarioDAO extends DAO{
         boolean resp = false;
         try{
             Statement status = conexao.createStatement();
-            String sql = "INSERT INTO usuario (id, nome, login, password, cpf ) "
-                    + "VALUES ('"+user.getId() +"', '"+ user.getNome() + "', '"
-                    + user.getLogin() + "', '" + user.getPassword() + "', '"+ user.getCpf() + "');";
+            String sql = "INSERT INTO usuario (login, senha, cpf, nome) "
+                    + "VALUES ('"+user.getLogin() + "', '"
+                    + user.getPassword() + "', '" + user.getCpf() + "', '"+ user.getNome() + "');";
             
             
             System.out.println(sql);

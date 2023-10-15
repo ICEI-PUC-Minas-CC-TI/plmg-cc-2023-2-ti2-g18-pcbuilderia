@@ -11,6 +11,7 @@ public class Usuario {
     }
 
     public Usuario(String nome, String login, String password, String cpf) {
+        
         this.nome = nome;
         this.login = login;
         this.password = password;
@@ -56,4 +57,12 @@ public class Usuario {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario [id=" + id + ", nome=" + nome + ", login=" + login + ", password=" + password + ", cpf=" + cpf
+                + "]";
+    }
+
+    
 }

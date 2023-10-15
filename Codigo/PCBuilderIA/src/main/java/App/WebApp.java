@@ -18,8 +18,10 @@ public class WebApp {
     private static UsuarioService usuarioService = new UsuarioService();
     public static void main(String[] args) {
         Spark.port(8080);
-        
+        Spark.staticFiles.location("/public");
 
+
+        Spark.get("/", (req, res) -> "hello word");
         // OpenAiService service = new OpenAiService(API_KEY, Duration.ofSeconds(55));
         // CompletionRequest cRequest = CompletionRequest.builder()
         //         .model("text-davinci-003")
@@ -32,7 +34,7 @@ public class WebApp {
 
 
         // Spark.get("/", ((request, response) -> service.createCompletion(cRequest).getChoices()));
-        Spark.get("/cadastro", (req, res) -> usuarioService.insert(req, res) );
+        Spark.post("/cadastro", (req, res) -> usuarioService.insert(req, res) );
 
     }
 }
