@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
-
 import App.dao.DAO;
 import App.dao.UsuarioDAO;
 import App.models.Usuario;
@@ -32,6 +31,28 @@ public class UsuarioService {
 		}
         return "<input type=\"hidden\" id=\"msg\" name=\"msg\" value=\"\">"+ "<input type=\"hidden\" id=\"msg\" name=\"msg\" value=\""+ resp +"\">";
 	}
+
+	public boolean read(Request req, Response res) {
+		boolean resp = false;
+		String login = req.queryParams("login");
+		String senha = req.queryParams("senha");
+		Usuario usuario = new Usuario();
+		
+		usuario.setLogin(login);
+		usuario.setPassword(senha);
+
+		if(usuarioDAO.read(usuario) == true) {
+			resp = true;
+			res.status(200);
+		} else {
+			resp = false;
+			res.status(401);
+		}
+		
+		return resp;
+
+	}
+
 
 
 }
