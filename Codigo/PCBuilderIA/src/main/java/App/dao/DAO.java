@@ -5,6 +5,9 @@ import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.HashMap;
+
+import App.config.AzurePostgresConfig;
 
 public class DAO {
     protected Connection conexao;
@@ -13,13 +16,15 @@ public class DAO {
         conexao = null;
     }
     public boolean conectar() {
+        HashMap <String, String> keys = AzurePostgresConfig.getKeysAzurePostgresSqlServer();
+
         String driverName = "org.postgresql.Driver";
-        String serverName = "pcbuilderia.postgres.database.azure.com";
-        String mydatabase = "pcbuilder";
-        int porta = 5432;
+        String serverName =  keys.get("servername");
+        String mydatabase = keys.get("mydatabase");
+        int porta = Integer.parseInt(keys.get("porta"));
         String url = "jdbc:postgresql://" + serverName + ":" + porta +"/" + mydatabase;
-        String username = "pcbuilderadm@pcbuilderia";
-        String password = "Yanking123!";
+        String username = keys.get("username");
+        String password = keys.get("password");
         boolean status = false;
 
         try {

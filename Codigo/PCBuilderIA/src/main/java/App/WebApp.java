@@ -39,6 +39,9 @@ public class WebApp {
 
         Spark.post("/usuario/cadastro", (req, res) -> usuarioService.insert     (req, res) );
         Spark.post("/usuario/login"   , (req, res) -> usuarioService.autenticar (req, res) );
+
+
+        
         Spark.get("/meuperfil/:id"  , (req, res)   -> usuarioService.getProfile (req, res)  );
     }
 }
