@@ -18,12 +18,12 @@ public class UsuarioDAO extends DAO{
 
     public boolean insert(Usuario user) {
         boolean resp = false;
-        if( EmailValidatorSecurity.validateEmail(user.getLogin()) == true ) {
+        if( EmailValidatorSecurity.validateEmail(user.getLogin()) == true && user.getPassword() != " " ) {
             try{
                 Statement status = conexao.createStatement();
                 String sql = "INSERT INTO usuario (login, senha, cpf, nome) "
                         + "VALUES ('"+user.getLogin() + "', '"
-                        + DAO.toMD5(user.getPassword()) + "', '" + user.getCpf() + "', '"+ user.getNome() + "');";
+                        + DAO.toMD5(user.getPassword()) + "', '" +  user.getCpf() + "', '"+ user.getNome() + "');";
                 
                 System.out.println(sql);
                
@@ -58,20 +58,21 @@ public class UsuarioDAO extends DAO{
     }
 
     public UsuarioDTO getProfile(String login) {
-        try{
-            Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            String sql = "SELECT id, login, nome FROM usuario WHERE login LIKE '" + login + "';";
-            System.out.println(sql);
-            
-            ResultSet rs = st.executeQuery(sql);
-            if(rs.next()) {
-                return new UsuarioDTO(rs.getInt("id"), rs.getString("login") , rs.getString("nome") );
+        if(EmailValidatorSecurity.validateEmail(login)) {
+            try{
+                Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                String sql = "SELECT id, login, nome FROM usuario WHERE login LIKE '" + login + "';";
+                System.out.println(sql);
+                
+                ResultSet rs = st.executeQuery(sql);
+                if(rs.next()) {
+                    return new UsuarioDTO(rs.getInt("id"), rs.getString("login") , rs.getString("nome") );
+                }
+                st.close();
             }
-            st.close();
-        }
-        catch (SQLException e) { throw new RuntimeException(e); }
-        catch(Exception e) { System.err.println(e.getMessage()); }
-
+            catch (SQLException e) { throw new RuntimeException(e); }
+            catch(Exception e) { System.err.println(e.getMessage()); }
+        }    
         return null;
     }
 

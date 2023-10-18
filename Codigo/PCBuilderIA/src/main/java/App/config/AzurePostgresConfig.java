@@ -16,9 +16,9 @@ public class AzurePostgresConfig {
 
             keys.put("servername", raf.readLine());
             keys.put("mydatabase", raf.readLine());
-            keys.put("porta", raf.readLine());
-            keys.put("username", raf.readLine());
-            keys.put("password", raf.readLine());
+            keys.put("porta",      raf.readLine());
+            keys.put("username",   raf.readLine());
+            keys.put("password",   raf.readLine());
             
             raf.close();
 

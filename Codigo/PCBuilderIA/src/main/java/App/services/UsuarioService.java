@@ -3,37 +3,35 @@ package App.services;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import org.json.JSONObject;
+import com.google.gson.Gson;
 
 import App.dao.DAO;
 import App.dao.UsuarioDAO;
 import App.dto.UsuarioDTO;
 import App.models.Usuario;
-import netscape.javascript.JSObject;
 import spark.*;
 
 public class UsuarioService {
     private UsuarioDAO usuarioDAO = new UsuarioDAO();
 
     public String insert(Request request, Response response) throws Exception{
-		String login = request.queryParams("login");
-		String senha = request.queryParams("senha");
-		String nome = request.queryParams("nome");
-		String cpf = request.queryParams("cpf");
+		response.type("application/json");
+		Usuario usuario = new Gson().fromJson(request.body(), Usuario.class);
+		System.out.println(usuario.toString());
+		String resp = "...";
 		
-		String resp = "";
-		
-		Usuario usuario = new Usuario(nome, login, senha, cpf);
+		// Usuario usuario = new Usuario(nome, login, senha, cpf);
 		System.out.println(usuario.toString());
         if(usuarioDAO.insert(usuario) == true) {
-            resp = "usuario (" + nome + ") criado!";
+            response.body("usuario (" + usuario.getNome() + ") foi criado!");
             response.status(200); // 201 Created
 			
 		} else {
-			resp = "usuario (" + nome + ") não criado!";
+			response.body("usuario (" + usuario.getNome() + ") não criado!");
 			response.status(404); // 404 Not found
 		}
-        return "<input type=\"hidden\" id=\"msg\" name=\"msg\" value=\"\">"+ "<input type=\"hidden\" id=\"msg\" name=\"msg\" value=\""+ resp +"\">";
+		
+        return resp;
 	}
 
 	public boolean autenticar(Request req, Response res) {
@@ -55,18 +53,22 @@ public class UsuarioService {
 	}
 
 	public String getProfile(Request req, Response res) {
-		UsuarioDTO  user = usuarioDAO.getProfile(req.queryParams("login"));
-		JSONObject json = new JSONObject();
+		UsuarioDTO userdto = usuarioDAO.getProfile(req.queryParams("login"));
 		
-		json.put("login", user.getLogin());
-		json.put("nome",  user.getNome());
-		json.put("id",    user.getId());
+		if(userdto != null) { 
+			res.status(200);
+			return new Gson().toJson( userdto ) ;
+		}
+		else {
+			res.status(401);
+			res.body("Perfil não encontrado.");
+		}
 		
-		return json.toString();
+		return null;
 	}
 
-	// private UsuarioDTO getProfile(String login) {
-	// 	return usuarioDAO.getProfile(login);
-	// }
+	private String getProfile(String login) {
+		return new Gson().toJson( usuarioDAO.getProfile(login) );
+	}
 
 }

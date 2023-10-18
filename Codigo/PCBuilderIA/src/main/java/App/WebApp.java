@@ -10,7 +10,6 @@ import com.theokanning.openai.*;
 import com.theokanning.openai.client.OpenAiApi;
 import com.theokanning.openai.completion.CompletionRequest;
 import com.theokanning.openai.service.OpenAiService;
-import org.json.JSONObject;
 
 import spark.ModelAndView;
 import spark.Spark;
@@ -24,6 +23,26 @@ public class WebApp {
     public static void main(String[] args) {
         Spark.port(8080);
         Spark.staticFiles.location("/public");
+        Spark.options("/*",(request, response) -> {
+
+            String accessControlRequestHeaders = request
+                    .headers("Access-Control-Request-Headers");
+            if (accessControlRequestHeaders != null) {
+                response.header("Access-Control-Allow-Headers",
+                        accessControlRequestHeaders);
+            }
+
+            String accessControlRequestMethod = request
+                    .headers("Access-Control-Request-Method");
+            if (accessControlRequestMethod != null) {
+                response.header("Access-Control-Allow-Methods",
+                        accessControlRequestMethod);
+            }
+
+            return "OK";
+        });
+
+    Spark.before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 
 //gpt 3.5
         // // Spark.get("/", (req, res) -> "hello word");
@@ -36,12 +55,13 @@ public class WebApp {
         // // // Spark.get("/", ((request, response) -> service.createCompletion(cRequest).getChoices()));
 
 
-
-        Spark.post("/usuario/cadastro", (req, res) -> usuarioService.insert     (req, res) );
-        Spark.post("/usuario/login"   , (req, res) -> usuarioService.autenticar (req, res) );
+        Spark.post("/cadastro", (req, res) -> usuarioService.insert(req, res) );
+        // Spark.get("/getlogin", (req, res) -> usuarioService.get);
+        Spark.get("/login/successful/", (req, res) -> usuarioService.getProfile(req, res) ); 
+        // Spark.post("/usuario/login"   , (req, res) -> usuarioService.autenticar (req, res) );
 
 
         
-        Spark.get("/meuperfil/:id"  , (req, res)   -> usuarioService.getProfile (req, res)  );
+        // Spark.get("/meuperfil/:id"  , (req, res)   -> usuarioService.getProfile (req, res)  );
     }
 }
