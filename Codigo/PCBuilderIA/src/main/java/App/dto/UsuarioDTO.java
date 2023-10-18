@@ -1,21 +1,13 @@
 package App.dto;
 
 public class UsuarioDTO {
-    private int id;
     private String nome;
     private String login;
-    public UsuarioDTO(int id, String login, String nome) {
-        this.id = id;
+    public UsuarioDTO(String login, String nome) {
         this.nome = nome;
         this.login = login;
     }
     public UsuarioDTO() {
-    }
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
     }
     public String getNome() {
         return nome;

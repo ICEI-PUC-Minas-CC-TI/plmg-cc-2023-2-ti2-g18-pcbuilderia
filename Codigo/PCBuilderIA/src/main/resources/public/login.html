@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="text/html; charset = UTF-8" http-equiv="content-type">
+    <script src="meioCampo.js"></script>
     <title>Formulário de Login</title>
 </head>
 <body>
@@ -13,33 +14,38 @@
 
         <label for="senha">Senha:</label>
         <input type="password" id="senha" name="senha" required><br><br>
-
-        <input  onclick="verifyLogin()" type="submit" value="Entrar">
+        <button onclick="verificarLogin()">Entrar</button>
     </form>
 </body>
-
+<!-- 
     <script>
         function verifyLogin() {
-            var status = false
-
-            var login = document.getElementById('login').value
-            var senha = document.getElementById('senha').value
-
-            console.log(login + senha)
-
-            var xhres =  new XMLHttpRequest()
-            xhres.open("POST", "http://localhost:8080/login", true)
-            xhres.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            xhres.onreadystatechange = function() {
-                if(xhres.readyState === XMLHttpRequest.DONE && xhres.status === 200) {
-                    console.log(xhres.responseText)
-                }
-            }
-            xhres.send("login=" + login + "&senha=" + senha);
+        
+        var login = document.getElementById('login').value
+        var senha = document.getElementById('senha').value
 
 
+        console.log(login + senha)
 
-        }
 
-    </script>
+    fetch("http://localhost:8080/login", 
+    {
+        headers:{
+            "Content-type":"application/json"
+        },
+        method:"GET",
+        body: JSON.stringify({
+            login:login,
+            senha:senha,
+        })
+    })
+    .then(function (res) { 
+        res.json.toString
+    })
+    .catch(function (res) {  
+        console.log(res) 
+    })
+
+}
+    </script> -->
 </html>

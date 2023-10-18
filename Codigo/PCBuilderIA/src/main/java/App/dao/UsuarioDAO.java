@@ -1,6 +1,7 @@
 package App.dao;
 
 import App.dto.UsuarioDTO;
+import App.dto.UsuarioRequestDTO;
 import App.models.Usuario;
 import App.security.EmailValidatorSecurity;
 
@@ -38,13 +39,13 @@ public class UsuarioDAO extends DAO{
         return resp;
     }
 
-    public boolean autenticar(String login, String senha) {
+    public boolean autenticar(UsuarioRequestDTO usuarioReqDTO) {
         boolean resp = false;
-        if(EmailValidatorSecurity.validateEmail(senha)){
+        if(EmailValidatorSecurity.validateEmail(usuarioReqDTO.getLogin()) && usuarioReqDTO.getPassword() != " "){
              try {
                 Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             
-                String sql = "SELECT * FROM usuario WHERE login LIKE '" + login + "' AND senha LIKE '" + DAO.toMD5(senha) + "'";
+                String sql = "SELECT * FROM usuario WHERE login LIKE '" + usuarioReqDTO.getLogin() + "' AND senha LIKE '" + DAO.toMD5(usuarioReqDTO.getPassword()) + "'";
                 System.out.println(sql);
             
                 ResultSet rs = st.executeQuery(sql);
@@ -61,12 +62,12 @@ public class UsuarioDAO extends DAO{
         if(EmailValidatorSecurity.validateEmail(login)) {
             try{
                 Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                String sql = "SELECT id, login, nome FROM usuario WHERE login LIKE '" + login + "';";
+                String sql = "SELECT login, nome FROM usuario WHERE login LIKE '" + login + "';";
                 System.out.println(sql);
                 
                 ResultSet rs = st.executeQuery(sql);
                 if(rs.next()) {
-                    return new UsuarioDTO(rs.getInt("id"), rs.getString("login") , rs.getString("nome") );
+                    return new UsuarioDTO(rs.getString("login") , rs.getString("nome") );
                 }
                 st.close();
             }

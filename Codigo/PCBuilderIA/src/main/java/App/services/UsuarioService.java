@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import App.dao.DAO;
 import App.dao.UsuarioDAO;
 import App.dto.UsuarioDTO;
+import App.dto.UsuarioRequestDTO;
 import App.models.Usuario;
 import spark.*;
 
@@ -20,8 +21,6 @@ public class UsuarioService {
 		System.out.println(usuario.toString());
 		String resp = "...";
 		
-		// Usuario usuario = new Usuario(nome, login, senha, cpf);
-		System.out.println(usuario.toString());
         if(usuarioDAO.insert(usuario) == true) {
             response.body("usuario (" + usuario.getNome() + ") foi criado!");
             response.status(200); // 201 Created
@@ -34,41 +33,32 @@ public class UsuarioService {
         return resp;
 	}
 
-	public boolean autenticar(Request req, Response res) {
-		boolean resp = false;
+	public String autenticar(Request req, Response res) {
+		String resp = "";
+		res.type("application/json");
+		UsuarioRequestDTO usuarioReqDTO = new Gson().fromJson(req.body(), UsuarioRequestDTO.class);
+		System.out.println("entre aq");
 		
-		String login = req.queryParams("login");
-		String senha = req.queryParams("senha");
-
-
-		if(usuarioDAO.autenticar(login, senha) == true) {
-			resp = true;
+		if(usuarioDAO.autenticar(usuarioReqDTO) == true) {
+			UsuarioDTO usuarioDTO = getProfile(usuarioReqDTO.getLogin());
+			
+			res.body(new Gson().toJson(usuarioDTO));
 			res.status(200);
+			
+			return new Gson().toJson(usuarioDTO);
+
 		} else {
-			resp = false;
-			res.status(401);
+			res.header("error", "Login Invalido!");;
+			res.status(402);
+		
 		}
 		
 		return resp;
 	}
 
-	public String getProfile(Request req, Response res) {
-		UsuarioDTO userdto = usuarioDAO.getProfile(req.queryParams("login"));
-		
-		if(userdto != null) { 
-			res.status(200);
-			return new Gson().toJson( userdto ) ;
-		}
-		else {
-			res.status(401);
-			res.body("Perfil não encontrado.");
-		}
-		
-		return null;
-	}
 
-	private String getProfile(String login) {
-		return new Gson().toJson( usuarioDAO.getProfile(login) );
+	private UsuarioDTO getProfile(String login) {
+		return usuarioDAO.getProfile(login);
 	}
 
 }

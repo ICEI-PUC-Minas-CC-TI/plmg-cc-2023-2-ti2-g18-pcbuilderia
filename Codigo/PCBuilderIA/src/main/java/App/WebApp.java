@@ -20,9 +20,9 @@ import java.util.Map;
 
 public class WebApp {
     private static UsuarioService usuarioService = new UsuarioService();
+    
     public static void main(String[] args) {
         Spark.port(8080);
-        Spark.staticFiles.location("/public");
         Spark.options("/*",(request, response) -> {
 
             String accessControlRequestHeaders = request
@@ -55,9 +55,10 @@ public class WebApp {
         // // // Spark.get("/", ((request, response) -> service.createCompletion(cRequest).getChoices()));
 
 
-        Spark.post("/cadastro", (req, res) -> usuarioService.insert(req, res) );
-        // Spark.get("/getlogin", (req, res) -> usuarioService.get);
-        Spark.get("/login/successful/", (req, res) -> usuarioService.getProfile(req, res) ); 
+        Spark.post("/cadastro", (req, res)      -> usuarioService.insert(req, res)     );
+        Spark.get("/login",     (req, res)      -> usuarioService.autenticar(req, res) );
+
+        // Spark.get("/login/successful/", (req, res) -> usuarioService.getProfile(req, res) ); 
         // Spark.post("/usuario/login"   , (req, res) -> usuarioService.autenticar (req, res) );
 
 
