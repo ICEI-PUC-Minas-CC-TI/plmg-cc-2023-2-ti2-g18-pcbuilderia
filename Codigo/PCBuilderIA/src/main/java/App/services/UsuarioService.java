@@ -15,18 +15,17 @@ import spark.*;
 public class UsuarioService {
     private UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-    public String insert(Request request, Response response) throws Exception{
+    public Boolean insert(Request request, Response response) throws Exception{
 		response.type("application/json");
 		Usuario usuario = new Gson().fromJson(request.body(), Usuario.class);
-		System.out.println(usuario.toString());
-		String resp = "...";
 		
+		boolean resp = false;
         if(usuarioDAO.insert(usuario) == true) {
-            response.body("usuario (" + usuario.getNome() + ") foi criado!");
+            response.body(new Gson().toJson("usuario (" + usuario.getNome() + ") foi criado!"));
             response.status(200); // 201 Created
 			
 		} else {
-			response.body("usuario (" + usuario.getNome() + ") não criado!");
+			response.body(new Gson().toJson("usuario (" + usuario.getNome() + ") não foi criado!"));
 			response.status(404); // 404 Not found
 		}
 		
@@ -42,7 +41,7 @@ public class UsuarioService {
 		if(usuarioDAO.autenticar(usuarioReqDTO) == true) {
 			UsuarioDTO usuarioDTO = getProfile(usuarioReqDTO.getLogin());
 			
-			res.body(new Gson().toJson(usuarioDTO));
+			res.body(new Gson().toJson(usuarioDTO).toString());
 			res.status(200);
 			
 			return new Gson().toJson(usuarioDTO);
@@ -60,5 +59,8 @@ public class UsuarioService {
 	private UsuarioDTO getProfile(String login) {
 		return usuarioDAO.getProfile(login);
 	}
+
+	// public UsuarioDTO getProfile(Request req, Response res) {
+	// }
 
 }

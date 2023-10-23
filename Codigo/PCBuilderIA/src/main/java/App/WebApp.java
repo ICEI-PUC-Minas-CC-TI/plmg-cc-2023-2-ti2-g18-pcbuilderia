@@ -23,7 +23,7 @@ public class WebApp {
     
     public static void main(String[] args) {
         Spark.port(8080);
-        Spark.options("/*",(request, response) -> {
+        Spark.options("*/*",(request, response) -> {
 
             String accessControlRequestHeaders = request
                     .headers("Access-Control-Request-Headers");
@@ -54,15 +54,9 @@ public class WebApp {
         // // // System.out.println(service.createCompletion(cRequest).getChoices());
         // // // Spark.get("/", ((request, response) -> service.createCompletion(cRequest).getChoices()));
 
-
-        Spark.post("/cadastro", (req, res)      -> usuarioService.insert(req, res)     );
-        Spark.get("/login",     (req, res)      -> usuarioService.autenticar(req, res) );
-
-        // Spark.get("/login/successful/", (req, res) -> usuarioService.getProfile(req, res) ); 
+        Spark.post("/usuario/cadastro", (req, res) -> usuarioService.insert(req, res) );
+        Spark.post("/usuario/login", (req, res) -> usuarioService.autenticar(req, res) );
         // Spark.post("/usuario/login"   , (req, res) -> usuarioService.autenticar (req, res) );
 
-
-        
-        // Spark.get("/meuperfil/:id"  , (req, res)   -> usuarioService.getProfile (req, res)  );
     }
 }

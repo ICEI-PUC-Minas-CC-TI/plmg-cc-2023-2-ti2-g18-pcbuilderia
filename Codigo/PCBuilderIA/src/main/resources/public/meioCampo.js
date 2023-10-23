@@ -12,6 +12,7 @@ function cadastrarUsuario() {
     fetch("http://localhost:8080/cadastro", 
     {
         headers:{
+            Accept: "application/json",
             "Content-type":"application/json"
         },
         method:"POST",
