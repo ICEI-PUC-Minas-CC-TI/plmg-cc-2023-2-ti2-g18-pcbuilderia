@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap');
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 20px;
+}
+
+section{
+    background-color: #313131;
+}
+
+/* Header */
+
+header {
+    background: rgb(49,49,49);
+    background: linear-gradient(0deg, rgba(49,49,49,1) 0%, rgba(0,0,0,1) 87%, rgba(0,0,0,1) 100%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+ 
+.imglogo{
+   width: 20%;
+   margin-left: 50px;
+   background-color: transparent;
+}
+
+.header-buttons {
+    float: right;
+    margin: auto;
+    background-color: transparent;
+}
+.header-buttons a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    background-color: transparent;
+}
+.header-buttons a:hover {
+    font-size: 23px;
+    background-color: transparent;
+}
+/* Section */
+body{
+    background-color: #313131;
+}
+section h1{
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+button{
+    background: black;
+    border-radius: 10px;
+    color: white;
+    font-size: 19px;
+    border: 0;
+}
+
+.searchItens{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  color: white;
+}
+
+
+#resultado{
+    color: white;
+    margin: 30px;
+    border-radius: 10px;
+}
+
+.imagem{
+    margin: 10px 40px;
+}
+
+.produto{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border: solid black 1px;
+    padding: 20px;    
+
+}
+
+.text{
+    text-align: center;
+    margin: auto;
+}
+
+
+select{
+    border-radius: 20px;
+    font-size: 15px;
+    background-color: white;
+}
+
+option {
+    background-color: white;
+
+}
+
+label{
+    font-size: 19px;
+    color: white;
+}
+
+/* Footer */
+footer{
+    background: rgb(49,49,49);
+    background: linear-gradient(180deg, rgba(49,49,49,1) 0%, rgba(0,0,0,1) 85%, rgba(0,0,0,1) 100%);
+    color: white;
+    padding: 30px;
+    margin-top: 600px;
+} 
+
+footer p{
+    text-align: center;
+}
+@media screen and (max-width: 1400px){
+
+    .header-buttons{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    header{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+    .searchItens{
+        flex-direction: column;
+    }
+}

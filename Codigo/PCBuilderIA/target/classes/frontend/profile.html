@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styleProfile.css">
+  <script src="script.js"></script>
+  <script src="signup.js"></script>
+  <title>Perfil</title>
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <img class="imglogo" src="imagens/logo.png" />
+          </a>
+      <div class="header-buttons">
+        <a href="index.html">Home</a>
+        <a href="forum.html">Dúvidas do Fórum</a>
+        <a href="signin.html" id="signinButton">Register</a>
+        <a href ="profile.html" id="profileButton" >Perfil</a>
+        <span id="userProfile" style="display: none;"></span>
+        <button id="loginButton">Entrar</button>
+      </div>
+    </header>
+  <div id="profileData">
+    <img id="imagemPerfil"src="https://cdn-icons-png.flaticon.com/512/3106/3106921.png">
+    <p>Nome:
+      <span id="username"></span></p>
+      <br>
+    <p>Usuário: 
+      <span id="user"></span></p>
+      <br>
+      <br>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var userLogado = JSON.parse(sessionStorage.getItem("userLogado"))
+      var usernameElement = document.getElementById("username");
+      var userElement = document.getElementById("user");
+      var listaUser = localStorage.getItem("listaUser");
+
+if (userLogado) {
+  usernameElement.textContent = userLogado.nome;
+  userElement.textContent = userLogado.login
+  
+  // Extrair apenas a propriedade 'userCad' de cada objeto
+  var parsedListaUser = JSON.parse(listaUser);
+  var userCadArray = parsedListaUser.map(function(item) {
+    return item.userCad;
+  });
+  // Remover valores duplicados do array
+  var uniqueUserCadArray = [...new Set(userCadArray)];
+  // Juntar os elementos do array em uma string separada por vírgula
+  var userCadString = uniqueUserCadArray.join(", ");
+  userElement.textContent = userCadString;
+} else {
+  window.location.href = "login.html"; 
+}
+      
+  });
+    document.addEventListener("DOMContentLoaded", function () {
+    var userLogado = localStorage.getItem("userLogado");
+    var userProfile = document.getElementById("userProfile");
+    var loginButton = document.getElementById("loginButton");
+    var profileButton = document.getElementById("profileButton");
+    var signinButton = document.getElementById("signinButton")
+  
+    if (userLogado) {
+      // O usuário está logado, exibe o botão de perfil
+      userProfile.style.display = "none";
+      loginButton.style.display = "none";
+      profileButton.style.display = "inline";
+      signinButton.style.display = "none";
+  
+      // Redirecionar para a página do perfil ao clicar no botão
+      profileButton.addEventListener("click", function () {
+        window.location.href = "profile.html"; // Substitua pelo URL da página do perfil
+      });
+    } else {
+      // O usuário não está logado, exibe o botão de login
+      userProfile.style.display = "none";
+      loginButton.style.display = "none";
+      profileButton.style.display = "none";
+      signinButton.style.display = "inline";
+
+    }
+  });
+  </script>
+</body>

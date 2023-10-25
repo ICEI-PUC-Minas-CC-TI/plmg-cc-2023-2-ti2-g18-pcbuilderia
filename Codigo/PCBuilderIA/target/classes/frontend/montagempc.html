@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleMontagem.css">
+    <script src="script.js"></script>
+    <title>Document</title>
+</head>
+<body>
+  <header>
+    <a href="index.html">
+        <img class="imglogo" src="imagens/logo.png" />
+      </a>
+  <div class="header-buttons">
+    <a href="index.html">Home</a>
+    <a href="forum.html">Dúvidas do Fórum</a>
+    <a href="signin.html" id="signinButton">Register</a>
+    <a href ="profile.html" id="profileButton" style="display: none;">Perfil</a>
+    <span id="userProfile" style="display: none;"></span>
+    <button id="loginButton">Entrar</button>
+  </div>
+</header>
+
+    <section>
+      <h1>Montagem de PC </h1>
+      
+      <div class="searchItens">
+        <div class="um">
+  
+          <div for="tipo"><b>Tipo de peça:</b></div>
+          <select id="tipo">
+            <option value="selecionepeca">Selecione sua peça...</option>
+            <option value="processador">Processador</option>
+            <option value="placa-de-video">Placa de Video</option>
+            <option value="placa-mae">Placa-mãe</option>
+            <option value="memoria-ram">Memória RAM</option>
+            <option value="hd">HD</option>
+            <option value="ssd">SSD</option>
+            <option value="gabinete">Gabinete</option> 
+          </select>
+  
+        </div>
+        
+        <div class="dois">
+  
+          <div for="orcamento"><b>Orçamento:</b></div>
+          <select id="orcamento">
+            <option value="selecionepeca">Selecione seu orçamento...</option>
+            <option value="baixo">Baixo</option>
+            <option value="medio">Médio</option>
+            <option value="alto">Alto</option>
+          </select>
+  
+        </div>
+        
+        <div class="tres">
+  
+          <div for="uso"><b>Uso:</b></div>
+          <select id="uso">
+            <option value="selecionepeca">Selecione seu modo de uso...</option>
+            <option value="gamer">Gamer</option>
+            <option value="trabalho">Trabalho</option>
+          </select>
+  
+        </div>
+    
+        <button onclick="filtrar()">Procurar</button>
+      </div>  
+    
+      <div id="resultado"></div>
+    </section>
+
+    <footer>
+      <p>&copy; 2023 - Montagem PC</p>
+    </footer>
+</body>
+</html>

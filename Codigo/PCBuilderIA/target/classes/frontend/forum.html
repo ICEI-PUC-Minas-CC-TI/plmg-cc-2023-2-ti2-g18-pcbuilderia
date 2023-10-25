@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styleForum.css" />
+    <style>
+      .respostas {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <a href="index.html">
+        <img class="imglogo" src="imagens/logo.png" />
+      </a>
+      <div class="header-buttons">
+        <a href="index.html">Home</a>
+        <a href="forum.html">Dúvidas do Fórum</a>
+        <a href="signin.html" id="signinButton">Register</a>
+        <a href ="profile.html" id="profileButton" style="display: none;">Perfil</a>
+        <span id="userProfile" style="display: none;"></span>
+        <button id="loginButton">Entrar</button>
+      </div>
+    </header>
+    <div class="container">
+      <h2 id="title">Dúvidas</h2>
+      <div class="thread" id="t1">
+        <h2>Duvidas sobre computadores:</h2>
+        <div class="botoes">
+          <button class="btn-1" onclick="mostrarRespostas(this)">
+            Mostrar respostas
+          </button>
+          <button
+            style="display: none"
+            class="btn"
+            onclick="ocultarRespostas(this)"
+          >
+            Ocultar respostas
+          </button>
+        </div>
+        <div style="display: none" class="respostas">
+          <p></p>
+          <hr />
+          <form>
+            <textarea></textarea>
+            <input type="submit" name="acao" value="enviar" />
+          </form>
+        </div>
+      </div>
+      <div class="thread" id="t2">
+        <h2>Duvidas sobre o Site:</h2>
+        <div class="botoes">
+          <button class="btn-1" onclick="mostrarRespostas(this)">
+            Mostrar respostas
+          </button>
+          <button
+            style="display: none"
+            class="btn"
+            onclick="ocultarRespostas(this)"
+          >
+            Ocultar respostas
+          </button>
+        </div>
+        <div style="display: none" class="respostas">
+          <p></p>
+          <hr />
+          <form>
+            <textarea></textarea>
+            <input type="submit" name="acao" value="enviar" />
+          </form>
+        </div>
+      </div>
+      <div class="thread" id="t3">
+        <h2>Outros tipos de dúvidas:</h2>
+        <div class="botoes">
+          <button class="btn-1" onclick="mostrarRespostas(this)">
+            Mostrar respostas
+          </button>
+          <button
+            style="display: none"
+            class="btn"
+            onclick="ocultarRespostas(this)"
+          >
+            Ocultar respostas
+          </button>
+        </div>
+        <div style="display: none" class="respostas">
+          <p></p>
+          <hr />
+          <form>
+            <textarea></textarea>
+            <input type="submit" name="acao" value="enviar" />
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      function mostrarRespostas(button) {
+        let respostasDiv = button.parentNode.nextElementSibling;
+        let mostrarBtn = button;
+        let ocultarBtn = button.nextElementSibling;
+
+        respostasDiv.style.display = "block";
+        mostrarBtn.style.display = "none";
+        ocultarBtn.style.display = "inline";
+      }
+
+      function ocultarRespostas(button) {
+        let respostasDiv = button.parentNode.nextElementSibling;
+        let mostrarBtn = button.previousElementSibling;
+        let ocultarBtn = button;
+
+        respostasDiv.style.display = "none";
+        mostrarBtn.style.display = "inline";
+        ocultarBtn.style.display = "none";
+      }
+
+      // EXIBIÇÃO DOS LUGAR PARA COLOCAR AS RESPOSTAS
+      const data = new Date();
+      const dia = String(data.getDate()).padStart(2, "0");
+      const mes = String(data.getMonth() + 1).padStart(2, "0");
+      const ano = data.getFullYear();
+      const hour = data.getHours();
+      const min = data.getMinutes();
+      const sec = data.getSeconds();
+      const dataAtual = `${"    "}${dia}/${mes}/${ano}${" "}${hour}:${min}:${sec}`;
+
+      let buttonsDelete = document.querySelectorAll(".thread .btn");
+      for (let i = 0; i < buttonsDelete.length; i++) {
+        buttonsDelete[i].addEventListener("click", () => {
+          let respostas = document.querySelectorAll(".respostas");
+          respostas[i].style.display = "none";
+        });
+      }
+      let buttonsRespostas = document.querySelectorAll(".thread .btn-1");
+      for (let i = 0; i < buttonsRespostas.length; i++) {
+        buttonsRespostas[i].addEventListener("click", () => {
+          let respostas = document.querySelectorAll(".respostas");
+          respostas[i].style.display = "block";
+        });
+      }
+
+      // FUNCIONAMENTO E EXIBIÇÃO DAS RESPOSTAS
+      let forms = document.querySelectorAll("form");
+      for (let i = 0; i < forms.length; i++) {
+        forms[i].addEventListener("submit", (e) => {
+          e.preventDefault();
+          let conteudo = document.querySelectorAll("textarea")[i];
+          let content = conteudo.value;
+          let savedContent = localStorage.getItem(`content${i}`); // Verificar se há conteúdo salvo para essa posição i
+
+          if (content.trim() !== "") {
+            if (savedContent) {
+              localStorage.setItem(
+                `content${i}`,
+                `${savedContent}\n${content}`
+              ); // Adicionar o novo conteúdo ao conteúdo salvo anteriormente
+            } else {
+              localStorage.setItem(`content${i}`, content); // Salvar o conteúdo no localStorage
+            }
+
+            forms[i].insertAdjacentHTML(
+              "beforebegin",
+              "<p id='content'>" + content + "</p>"
+            );
+            conteudo.value = "";
+          }
+        });
+
+        // Recuperar e exibir o conteúdo salvo do localStorage
+        let savedContent = localStorage.getItem(`content${i}`);
+        if (savedContent) {
+          forms[i].insertAdjacentHTML(
+            "beforebegin",
+            "<p id='content' class='respostas'>" +
+              savedContent.replace(/\n/g, "<br>") +
+              "</p>"
+          );
+          forms[i].insertAdjacentHTML(
+            "beforebegin",
+            '<p id ="data">' + dataAtual + "</p>"
+          );
+        }
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+    var userLogado = localStorage.getItem("userLogado");
+    var userProfile = document.getElementById("userProfile");
+    var loginButton = document.getElementById("loginButton");
+    var profileButton = document.getElementById("profileButton");
+    var signinButton = document.getElementById("signinButton")
+  
+    if (userLogado) {
+      // O usuário está logado, exibe o botão de perfil
+      userProfile.style.display = "none";
+      loginButton.style.display = "none";
+      profileButton.style.display = "inline";
+      signinButton.style.display = "none";
+  
+      // Redirecionar para a página do perfil ao clicar no botão
+      profileButton.addEventListener("click", function () {
+        window.location.href = "profile.html"; // Substitua pelo URL da página do perfil
+      });
+    } else {
+      // O usuário não está logado, exibe o botão de login
+      userProfile.style.display = "none";
+      loginButton.style.display = "none";
+      profileButton.style.display = "none";
+      signinButton.style.display = "inline";
+
+    }
+  });
+    </script>
+  </body>
+</html>

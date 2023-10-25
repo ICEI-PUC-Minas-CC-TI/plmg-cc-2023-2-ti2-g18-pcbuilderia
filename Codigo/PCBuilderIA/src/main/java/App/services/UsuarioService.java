@@ -15,11 +15,10 @@ import spark.*;
 public class UsuarioService {
     private UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-    public Boolean insert(Request request, Response response) throws Exception{
+    public Response insert(Request request, Response response) throws Exception{
 		response.type("application/json");
 		Usuario usuario = new Gson().fromJson(request.body(), Usuario.class);
 		
-		boolean resp = false;
         if(usuarioDAO.insert(usuario) == true) {
             response.body(new Gson().toJson("usuario (" + usuario.getNome() + ") foi criado!"));
             response.status(200); // 201 Created
@@ -29,7 +28,7 @@ public class UsuarioService {
 			response.status(404); // 404 Not found
 		}
 		
-        return resp;
+        return response;
 	}
 
 	public String autenticar(Request req, Response res) {
@@ -41,7 +40,7 @@ public class UsuarioService {
 		if(usuarioDAO.autenticar(usuarioReqDTO) == true) {
 			UsuarioDTO usuarioDTO = getProfile(usuarioReqDTO.getLogin());
 			
-			res.body(new Gson().toJson(usuarioDTO).toString());
+			res.body(new Gson().toJson(usuarioDTO));
 			res.status(200);
 			
 			return new Gson().toJson(usuarioDTO);

@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap');
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-size: 20px;
+}
+
+section{
+  background-color: #313131;
+}
+
+/* Header */
+
+header {
+  background: rgb(49,49,49);
+  background: linear-gradient(0deg, rgba(49,49,49,1) 0%, rgba(0,0,0,1) 87%, rgba(0,0,0,1) 100%);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.imglogo{
+ width: 20%;
+ margin-left: 50px;
+ background-color: transparent;
+}
+
+.header-buttons {
+  float: right;
+  margin: auto;
+  background-color: transparent;
+}
+.header-buttons a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  background-color: transparent;
+}
+.header-buttons a:hover {
+  font-size: 23px;
+  background-color: transparent;
+}
+
+
+/* Corpo */
+.thread h2{
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  width: 100%;
+}
+#data {
+  float: right;
+}
+#t3{
+  padding-bottom: 100px;
+}
+.botoes{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+#title {
+  display: flex;
+  font-size: 45px;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+form input{
+  font-size: 13px;
+    font-weight: lighter;
+    border-radius: 10px;
+    padding: 10px;
+    border: none;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+}
+button {
+    font-size: 13px;
+    font-weight: lighter;
+    padding: 4px;
+    border: none;
+    background-color: #313131;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.btn{
+  text-align: center;
+  justify-content: center;
+  position: relative;
+}
+      .respostas p {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+.respostas {
+  width: 80%;
+  padding-left: 200px;
+  flex-wrap: wrap;
+  padding-top: 50px;
+  display: flex;
+
+}
+.container {
+  background-color: #313131;
+}
+.respostas > h2 {
+  font-size: 18px;
+  color: #333;
+}
+textarea {
+  width: 100%;
+  height: 60px;
+  border: 1px solid black;
+}
+form {
+    height: 100px;
+}
+body {
+  color: white;
+  background-color: #313131;
+}
+@media screen and (max-width: 1400px){
+
+  .header-buttons{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+  }
+  header{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      text-align: center;
+  }
+}
+
+
