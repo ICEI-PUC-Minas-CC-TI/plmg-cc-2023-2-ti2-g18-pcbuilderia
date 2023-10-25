@@ -58,7 +58,7 @@ public class UsuarioDAO extends DAO{
         return resp;
     }
 
-    public UsuarioDTO getProfile(String login) {
+    public UsuarioDTO getProfileDTO(String login) {
         if(EmailValidatorSecurity.validateEmail(login)) {
             try{
                 Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -76,6 +76,28 @@ public class UsuarioDAO extends DAO{
         }    
         return null;
     }
+
+    
+    // public Usuario getProfile(String login) {
+    //     if(EmailValidatorSecurity.validateEmail(login)) {
+    //         try{
+    //             Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+    //             String sql = "SELECT login, nome FROM usuario WHERE login LIKE '" + login + "';";
+    //             System.out.println(sql);
+                
+    //             ResultSet rs = st.executeQuery(sql);
+    //             if(rs.next()) {
+    //                 return new UsuarioDTO(rs.getString("login") , rs.getString("nome") );
+    //             }
+    //             st.close();
+    //         }
+    //         catch (SQLException e) { throw new RuntimeException(e); }
+    //         catch(Exception e) { System.err.println(e.getMessage()); }
+    //     }    
+    //     return null;
+    // }
+
+   
 
 
 }

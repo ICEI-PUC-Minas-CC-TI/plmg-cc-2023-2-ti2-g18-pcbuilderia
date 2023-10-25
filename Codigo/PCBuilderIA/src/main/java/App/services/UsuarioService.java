@@ -1,11 +1,9 @@
 package App.services;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 
 import com.google.gson.Gson;
 
-import App.dao.DAO;
 import App.dao.UsuarioDAO;
 import App.dto.UsuarioDTO;
 import App.dto.UsuarioRequestDTO;
@@ -32,7 +30,7 @@ public class UsuarioService {
 	}
 
 	public String autenticar(Request req, Response res) {
-		String resp = "";
+		String resp = "Fail";
 		res.type("application/json");
 		UsuarioRequestDTO usuarioReqDTO = new Gson().fromJson(req.body(), UsuarioRequestDTO.class);
 		System.out.println("entre aq");
@@ -56,7 +54,15 @@ public class UsuarioService {
 
 
 	private UsuarioDTO getProfile(String login) {
-		return usuarioDAO.getProfile(login);
+		return usuarioDAO.getProfileDTO(login);
+	}
+	// private Usuario getProfile(String login) {
+	// 	return usuarioDAO.getProfile(login);
+	// }
+
+	// public String editarUsuario(Request req, Response res) {
+	// 	res.type("application/json");
+
 	}
 
 	// public UsuarioDTO getProfile(Request req, Response res) {

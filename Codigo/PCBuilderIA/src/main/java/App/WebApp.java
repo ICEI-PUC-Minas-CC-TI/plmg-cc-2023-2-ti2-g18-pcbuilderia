@@ -1,22 +1,15 @@
 package App;
 
-import App.dao.DAO;
-import App.dao.UsuarioDAO;
-import App.models.Usuario;
-import App.security.EmailValidatorSecurity;
 import App.services.UsuarioService;
 
-import com.theokanning.openai.*;
-import com.theokanning.openai.client.OpenAiApi;
-import com.theokanning.openai.completion.CompletionRequest;
-import com.theokanning.openai.service.OpenAiService;
+// import com.theokanning.openai.*;
+// import com.theokanning.openai.client.OpenAiApi;
+// import com.theokanning.openai.completion.CompletionRequest;
+// import com.theokanning.openai.service.OpenAiService;
 
-import spark.ModelAndView;
 import spark.Spark;
 
-import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
+
 
 public class WebApp {
     private static UsuarioService usuarioService = new UsuarioService();
@@ -54,8 +47,16 @@ public class WebApp {
         // // // System.out.println(service.createCompletion(cRequest).getChoices());
         // // // Spark.get("/", ((request, response) -> service.createCompletion(cRequest).getChoices()));
 
+        
         Spark.post("/usuario/cadastro", (req, res) -> usuarioService.insert(req, res) );
         Spark.post("/usuario/login", (req, res) -> usuarioService.autenticar(req, res) );
+        Spark.post("/usuario/editarperfil", (req, res) -> usuarioService.editarUsuario(req, res));
+        
+        
+        
+        
+        
+        
         // Spark.post("/usuario/login"   , (req, res) -> usuarioService.autenticar (req, res) );
 
     }

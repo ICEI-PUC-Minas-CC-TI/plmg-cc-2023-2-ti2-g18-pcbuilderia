@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styleProfile.css">
   <script src="script.js"></script>
-  <script src="signup.js"></script>
   <title>Perfil</title>
 </head>
 <body>
@@ -28,7 +27,7 @@
     <p>Nome:
       <span id="username"></span></p>
       <br>
-    <p>Usuário: 
+    <p>Email: 
       <span id="user"></span></p>
       <br>
       <br>
@@ -44,20 +43,8 @@
 if (userLogado) {
   usernameElement.textContent = userLogado.nome;
   userElement.textContent = userLogado.login
-  
-  // Extrair apenas a propriedade 'userCad' de cada objeto
-  var parsedListaUser = JSON.parse(listaUser);
-  var userCadArray = parsedListaUser.map(function(item) {
-    return item.userCad;
-  });
-  // Remover valores duplicados do array
-  var uniqueUserCadArray = [...new Set(userCadArray)];
-  // Juntar os elementos do array em uma string separada por vírgula
-  var userCadString = uniqueUserCadArray.join(", ");
-  userElement.textContent = userCadString;
-} else {
-  window.location.href = "login.html"; 
-}
+
+} else { window.location.href = "login.html"; }
       
   });
     document.addEventListener("DOMContentLoaded", function () {
