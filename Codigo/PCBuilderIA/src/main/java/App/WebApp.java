@@ -50,11 +50,7 @@ public class WebApp {
         
         Spark.post("/usuario/cadastro", (req, res) -> usuarioService.insert(req, res) );
         Spark.post("/usuario/login", (req, res) -> usuarioService.autenticar(req, res) );
-        Spark.post("/usuario/editarperfil", (req, res) -> usuarioService.editarUsuario(req, res));
-        
-        
-        
-        
+        Spark.post("/usuario/editarperfil", (req, res) ->  usuarioService.update(req,  res));
         
         
         // Spark.post("/usuario/login"   , (req, res) -> usuarioService.autenticar (req, res) );

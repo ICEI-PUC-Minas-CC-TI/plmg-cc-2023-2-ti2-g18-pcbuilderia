@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 
 import App.dao.UsuarioDAO;
 import App.dto.UsuarioDTO;
+import App.dto.UsuarioEditRequestDTO;
 import App.dto.UsuarioRequestDTO;
 import App.models.Usuario;
 import spark.*;
@@ -52,20 +53,35 @@ public class UsuarioService {
 		return resp;
 	}
 
+	public boolean update(Request req, Response res) { 
+		boolean resp=false;
+		String loginUsuario = req.queryParams("login");
+		Usuario novoUsuario = getProfileByLogin(loginUsuario);
+
+		if(novoUsuario != null) {
+			novoUsuario.setLogin(req.queryParams("novoLogin"));
+			novoUsuario.setNome(req.queryParams("novoNome"));
+			novoUsuario.setPassword(req.queryParams("novaPassword"));
+
+			return usuarioDAO.updateUsuario(novoUsuario, loginUsuario);
+
+		}
+
+		return resp;
+	}
 
 	private UsuarioDTO getProfile(String login) {
 		return usuarioDAO.getProfileDTO(login);
 	}
+
+
+	private Usuario getProfileByLogin(String login) {
+		return usuarioDAO.getProfileByLogin(login);
+	}
+	
+
 	// private Usuario getProfile(String login) {
 	// 	return usuarioDAO.getProfile(login);
-	// }
-
-	// public String editarUsuario(Request req, Response res) {
-	// 	res.type("application/json");
-
-	}
-
-	// public UsuarioDTO getProfile(Request req, Response res) {
 	// }
 
 }

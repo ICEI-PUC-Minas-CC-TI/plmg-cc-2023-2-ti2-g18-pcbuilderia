@@ -78,24 +78,46 @@ public class UsuarioDAO extends DAO{
     }
 
     
-    // public Usuario getProfile(String login) {
-    //     if(EmailValidatorSecurity.validateEmail(login)) {
-    //         try{
-    //             Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-    //             String sql = "SELECT login, nome FROM usuario WHERE login LIKE '" + login + "';";
-    //             System.out.println(sql);
+    public Usuario getProfileByLogin(String login) {
+        if(EmailValidatorSecurity.validateEmail(login)) {
+            try{
+                Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                String sql = "SELECT nome, login, password, cpf, FROM usuario WHERE login LIKE '" + login + "';";
+                System.out.println(sql);
                 
-    //             ResultSet rs = st.executeQuery(sql);
-    //             if(rs.next()) {
-    //                 return new UsuarioDTO(rs.getString("login") , rs.getString("nome") );
-    //             }
-    //             st.close();
-    //         }
-    //         catch (SQLException e) { throw new RuntimeException(e); }
-    //         catch(Exception e) { System.err.println(e.getMessage()); }
-    //     }    
-    //     return null;
-    // }
+                ResultSet rs = st.executeQuery(sql);
+                if(rs.next()) {
+                    return new Usuario(rs.getString("nome"),rs.getString("login") , rs.getString("password"), rs.getString("cpf") );
+                }
+                st.close();
+            }
+            catch (SQLException e) { throw new RuntimeException(e); }
+            catch(Exception e) { System.err.println(e.getMessage()); }
+        }    
+        return null;
+    }
+
+    public boolean updateUsuario(Usuario usuario, String oldLogin) {
+        boolean resp = false;
+        if(EmailValidatorSecurity.validateEmail(usuario.getLogin()) && usuario.getPassword() != " ") {
+            try{
+                Statement status = conexao.createStatement();
+//                UPDATE usuario SET login = 'brack.games.1@gmail.com', senha= 'xbox360mw3', nome = 'manuel soares' WHERE login LIKE 'tcedro67@gmail.com';
+
+                String sql = "UPDATE usuario SET login = '" + usuario.getLogin() + "', senha = '" + DAO.toMD5(usuario.getLogin()) + "', nome = '" + usuario.getNome() 
+                + "' WHERE login LIKE '" + oldLogin + "';";
+                       
+                System.out.println(sql);
+               
+                status.executeUpdate(sql);
+                status.close();
+                resp = true;
+            
+            } catch (SQLException e) { throw new RuntimeException(e); }
+            catch(Exception e) { System.out.println(e.getMessage());} 
+        }
+        return resp;
+    }
 
    
 
