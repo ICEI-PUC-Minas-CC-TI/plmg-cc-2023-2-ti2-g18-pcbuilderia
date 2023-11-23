@@ -51,4 +51,20 @@ public class PlacaMaeDAO extends DAO {
        
         return listByPrice;
     }
+    public Hardware getByNome(String nome) {
+        Hardware h =null;
+        try {
+            java.sql.Statement st = conexao.createStatement();
+            String query = "SELECT * FROM PlacaMae WHERE nome LIKE '" + nome + "';";
+            System.out.println(query);
+
+            ResultSet rs = st.executeQuery(query);
+            if(rs.next()){ 
+                h = new Hardware(rs.getInt("id"), rs.getString("modelo"), rs.getString("nome"), rs.getDouble("price"), rs.getString("descricaoDoProduto"), rs.getString("imagem_url")); 
+            }
+            st.close();    
+        } catch(Exception e) { System.err.println(e.getMessage()); }
+        
+        return h;
+    }
 }

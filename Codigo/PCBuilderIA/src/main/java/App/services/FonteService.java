@@ -30,4 +30,13 @@ public class FonteService {
         
         return jsonArray;
     }
+    public JsonElement getByNome(Request request) {
+        String nome = request.params(":nome");
+        Hardware h = fonteDAO.getByNome(nome);
+        
+        Gson gson = new Gson();
+        JsonElement je = gson.toJsonTree(h);
+
+        return je;
+    }
 }

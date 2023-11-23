@@ -36,7 +36,7 @@ public class DiscoRigidoDAO extends DAO{
 
         try {
             java.sql.Statement st = conexao.createStatement();
-            String query = "SELECT * FROM DiscoRigido WHERE price <= " + price + ";";
+            String query = "SELECT * FROM discorigido WHERE price <= " + price + ";";
             System.out.println(query);
 
             ResultSet rs = st.executeQuery(query);
@@ -50,5 +50,22 @@ public class DiscoRigidoDAO extends DAO{
         } catch(Exception e) { System.err.println(e.getMessage()); }
        
         return listByPrice;
+    }
+    public Hardware getByNome(String nome) {
+        Hardware h =null;
+        try {
+            java.sql.Statement st = conexao.createStatement();
+            String query = "SELECT * FROM discorigido WHERE nome LIKE '" + nome + "';";
+            System.out.println(query);
+
+            ResultSet rs = st.executeQuery(query);
+            if(rs.next()){ 
+                h = new Hardware(rs.getInt("id"), rs.getString("modelo"), rs.getString("nome"), rs.getDouble("price"), rs.getString("descricaoDoProduto"), rs.getString("imagem_url")); 
+            }
+            
+            st.close();    
+        } catch(Exception e) { System.err.println(e.getMessage()); }
+        
+        return h;
     }
 }

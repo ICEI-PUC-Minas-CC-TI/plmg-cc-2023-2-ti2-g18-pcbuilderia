@@ -39,29 +39,31 @@ public class WebApp {
         Spark.post("/usuario/cadastro", (req, res) -> usuarioService.insert(req, res) );
         Spark.post("/usuario/login", (req, res) -> usuarioService.autenticar(req, res) );
         Spark.post("/usuario/editarperfil", (req, res) ->  usuarioService.update(req,  res));
-        
         //Processador
         Spark.get("/processador", (req, res) -> processadorService.getAll());
-        Spark.get("/processador/:price", (req, res) -> processadorService.getListByPrice(req));
-        
+        Spark.get("/processador/getByPrice/:price", (req, res) -> processadorService.getListByPrice(req));
+        Spark.get("/processador/getByNome/:nome", (req, res) -> processadorService.getByNome(req));
         //PlacaDeVideo
         Spark.get("/placadevideo", (req, res) -> placaDeVideoService.getAll());
-        Spark.get("/placadevideo/:price", (req, res) -> placaDeVideoService.getListByPrice(req));
-        
+        Spark.get("/placadevideo/getByPrice/:price", (req, res) -> placaDeVideoService.getListByPrice(req));
+        Spark.get("/placadevideo/getByNome/:nome", (req, res) -> placaDeVideoService.getByNome(req));
         //PlacaMae
         Spark.get("/placamae", (req, res) -> placaMaeService.getAll());
-        Spark.get("/placamae/:price", (req, res) -> placaMaeService.getListByPrice(req));
-        
+        Spark.get("/placamae/getByPrice/:price", (req, res) -> placaMaeService.getListByPrice(req));
+        Spark.get("/placamae/getByNome/:nome", (req, res) -> placaMaeService.getByNome(req));
         //MemoriaRam
         Spark.get("/memoriaram", (req, res) -> memoriaRamService.getAll());
-        Spark.get("/memoriaram/:price", (req, res) -> memoriaRamService.getListByPrice(req));
-        
+        Spark.get("/memoriaram/getByPrice/:price", (req, res) -> memoriaRamService.getListByPrice(req));
+        Spark.get("/memoriaram/getByNome/:nome", (req, res) -> memoriaRamService.getByNome(req));
         //Fonte
         Spark.get("/fonte", (req, res) -> fonteService.getAll());
-        Spark.get("/fonte/:price", (req, res) -> fonteService.getListByPrice(req));
-        
+        Spark.get("/fonte/getByPrice/:price", (req, res) -> fonteService.getListByPrice(req));
+        Spark.get("/fonte/getByNome/:nome", (req, res) -> fonteService.getByNome(req));
         //Armazenamento
         Spark.get("/discorigido", (req, res) -> discoRigidoService.getAll());
-        Spark.get("/discorigido/:price", (req, res) -> discoRigidoService.getListByPrice(req));
+        Spark.get("/discorigido/getByPrice/:price", (req, res) -> discoRigidoService.getListByPrice(req));
+        Spark.get("/discorigido/getByNome/:nome", (req, res) -> discoRigidoService.getByNome(req));
+        //computador
+        Spark.post("/inserircomputador/:idUsuario:/", null);
     }
 }

@@ -21,8 +21,7 @@ public class Computador {
     public void setPriceTotal(Double priceTotal) {
         this.priceTotal = priceTotal;
     }
-    public Computador(int id, int idUsuario, int idProcessador, int idPlacaMae, int idMemoriaRam, int idDiscoRigido, int placaDeVideo) {
-        this.idComputador = id;
+    public Computador(int idUsuario, int idProcessador, int idPlacaMae, int idMemoriaRam, int idDiscoRigido, int placaDeVideo) {
         this.idUsuario = idUsuario;
         this.idProcessador = idProcessador;
         this.idPlacaMae = idPlacaMae;

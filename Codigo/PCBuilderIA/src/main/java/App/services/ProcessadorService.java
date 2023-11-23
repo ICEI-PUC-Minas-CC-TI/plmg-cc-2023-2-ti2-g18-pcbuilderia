@@ -31,4 +31,13 @@ public class ProcessadorService {
         
         return jsonArray;
     }
+    public JsonElement getByNome(Request request) {
+        String nome = request.params(":nome");
+        Hardware h = processadorDAO.getByNome(nome);
+        
+        Gson gson = new Gson();
+        JsonElement je = gson.toJsonTree(h);
+
+        return je;
+    }
 }

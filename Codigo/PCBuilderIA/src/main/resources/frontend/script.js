@@ -82,32 +82,52 @@ function toggle(i){
             </li>`
 
 */
+const btnsAdicionar = [];
+
+function adcionarPecaNoCarrinho(li) {
+  console.log(li.getElementsByClassName('valor').value)
+}
+
 function montarHtml(json){
   let str = "";
   console.log(json)
   for (let index = 0; index < json.length; index++) {
     str += ` 
-    <li class="produto">
-    <div class = "imagem"><img src="${json[index].url}"width = "150px" height = "150px"> </div>
-        <div class="descstrong"> 
-          ${json[index].nome}
+            <li class="produto" id= "produtoTODO">
+           
+            <div class = "imagem" id="urlPeca"><img src="${json[index].url}"width = "150px" height = "150px"> </div>
+                <div class="descstrong" id="nomePeca"> 
+                  ${json[index].nome}
+                </div>
+            
+                <div class="text" id="descricaoPeca"> 
+          <strong class="descstrong">
+            Descrição:
+          </strong> 
+            ${json[index].descricaoDoProduto}<br>
+          <strong class="valor" id="valorPeca">Valor:</strong> R$${json[index].price}<br> 
         </div>
-    
-        <div class="text"> 
-  <strong class="descstrong">
-    Descrição:
-  </strong> 
-    ${json[index].descricaoDoProduto}<br>
-  <strong class="valor">Valor:</strong> R$${json[index].price}<br> 
-</div>
-        
-        </div>
-    </li>`;
-    
+                
+                </div>
+                <div class="pagination">
+                <div class="">
+                    <button id="loadMoreButton ${index}" type="button" >
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+            </li>`;
+
+            
   }
   document.getElementById("hardwareList").innerHTML = str;
-}
+  for (let index = 0; index < json.length; index++) {
+    var li = document.getElementById('produtoTODO')
+    document.getElementById('loadMoreButton ' + index).addEventListener('click', () => adcionarPecaNoCarrinho(li))
+    
+  }
 
+}
 function filtrarPorTipo() {
   var tipo = document.getElementById("tipo").value;
 
@@ -127,7 +147,7 @@ function filtrarPorPreco() {
 
   let str = "";
 
-  fetch("http://localhost:8080/" + tipo + "/" + price)
+  fetch("http://localhost:8080/" + tipo + "/getByPrice/" + price)
   .then((response) => response.json())
   .then((json) => montarHtml(json))
   .catch((err) => alert(msgError))
