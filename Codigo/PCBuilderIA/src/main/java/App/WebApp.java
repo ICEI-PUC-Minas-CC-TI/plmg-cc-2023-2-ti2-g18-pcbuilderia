@@ -31,13 +31,6 @@ public class WebApp {
                         accessControlRequestHeaders);
             }
 
-            String accessControlRequestMethod = request
-                    .headers("Access-Control-Request-Method");
-            if (accessControlRequestMethod != null) {
-                response.header("Access-Control-Allow-Methods",
-                        accessControlRequestMethod);
-            }
-
             return "OK";
         });
 
@@ -46,7 +39,7 @@ public class WebApp {
         Spark.post("/usuario/login", (req, res) -> usuarioService.autenticar(req, res) );
         Spark.post("/usuario/editarperfil", (req, res) ->  usuarioService.update(req,  res));
         
-        Spark.get("/processadores", (req, res) -> processadorService.getAll().toString());
+        Spark.get("/processador", (req, res) -> processadorService.getAll().toString());
         Spark.get("/placadevideo", (req, res) -> placaDeVideoService.getAll());
         Spark.get("/placamae", (req, res) -> placaMaeService.getAll());
         Spark.get("/memoriaram", (req, res) -> memoriaRamService.getAll());

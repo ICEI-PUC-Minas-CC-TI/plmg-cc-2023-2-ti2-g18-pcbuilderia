@@ -7,6 +7,8 @@
     font-size: 20px;
 }
 
+
+
 section{
     background-color: #313131;
 }
@@ -53,14 +55,48 @@ section h1{
     padding: 10px;
 }
 
-button{
-    background: black;
-    border-radius: 10px;
-    color: white;
-    font-size: 19px;
-    border: 0;
-}
-
+button {
+    display: inline-block;
+    padding: .75rem 1.25rem;
+    border-radius: 10rem;
+    color: black;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: .15rem;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: green;
+      border-radius: 10rem;
+      z-index: -2;
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background-color: darken(green(16, 88, 16), 75%);
+      transition: all .3s;
+      border-radius: 10rem;
+      z-index: -1;
+    }
+    &:hover {
+      color: rgb(167, 219, 155);
+      &:before {
+        width: 100%;
+      }
+    }
+  }
 .searchItens{
   text-align: center;
   display: flex;
@@ -71,10 +107,17 @@ button{
 
 
 #resultado{
-    color: white;
-    margin: 30px;
-    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    color: whitesmoke;
 }
+
+
+
+
 
 .imagem{
     margin: 10px 40px;
@@ -105,10 +148,15 @@ option {
     background-color: white;
 
 }
-
+strong.valor {
+    color:  green;
+}
 label{
     font-size: 19px;
     color: white;
+}
+#valor {
+    color: rgb(102, 211, 102);
 }
 
 /* Footer */

@@ -14,7 +14,6 @@ public class ProcessadorDAO extends DAO{
 
     public List<Hardware> getListProcessador() {
         List<Hardware> listProcessadores = new ArrayList<>();
-
         try {
             java.sql.Statement status = conexao.createStatement();
             String query = "SELECT * FROM Processadores;";
