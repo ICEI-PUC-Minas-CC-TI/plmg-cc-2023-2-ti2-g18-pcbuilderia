@@ -1,19 +1,20 @@
 # PCBuilderIA
 
-[Escreva um ou dois  parágrafo resumindo o objetivo do seu projeto.]
+PCBuilder é um portal inovador projetado para simplificar a emocionante jornada de montagem de um computador personalizado.
+Ao entrar neste universo digital,os usuários são recebidos por uma interface intuitiva que oferece uma experiência única de construção de PC
 
 ## Alunos integrantes da equipe
 
 * Thiago Cedro Silva de Souza
 * Hanna Rodrigues Chaves
-* [Nome completo do aluno 3]
-* [Nome completo do aluno 4]
+* Angelo Marques
+* Pedro Catotti
 
 ## Professores responsáveis
 
-* [Nome completo do professor 1]
-* [Nome completo do professor 2]
+* Ilo
+* Baroni
 
 ## Instruções de utilização
 
-[Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.]
+live share no front end + run WebApp.java
