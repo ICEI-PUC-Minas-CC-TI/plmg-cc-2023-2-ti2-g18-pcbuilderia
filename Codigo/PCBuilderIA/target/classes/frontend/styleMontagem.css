@@ -7,7 +7,13 @@
     font-size: 20px;
 }
 
-
+.hardwares {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
 
 section{
     background-color: #313131;
@@ -113,6 +119,7 @@ button {
     margin: 0;
     list-style: none;
     color: whitesmoke;
+    align-items: center;
 }
 
 
@@ -121,14 +128,18 @@ button {
 
 .imagem{
     margin: 10px 40px;
+    align-self: 50%;
 }
 
 .produto{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    border: solid black 1px;
+    border: solid black 2px;
     padding: 20px;    
+    background-color: gray;
+    color: black;
+    align-items:  center;
 
 }
 
@@ -136,7 +147,9 @@ button {
     text-align: center;
     margin: auto;
 }
-
+.descstrong {
+    align-self: auto;
+}
 
 select{
     border-radius: 20px;
@@ -186,5 +199,25 @@ footer p{
     }
     .searchItens{
         flex-direction: column;
+    }
+}
+
+
+@media screen and (min-width: 380px) {
+    .hardwares{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+/* On screens that are 576px or less*/
+@media screen and (min-width: 576px) {
+    .hardwares {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+/* On screens that are 992px or less*/
+@media screen and (min-width: 992px) {
+    .hardwares {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }

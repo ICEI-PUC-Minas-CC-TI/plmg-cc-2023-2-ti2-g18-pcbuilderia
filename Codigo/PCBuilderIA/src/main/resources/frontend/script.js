@@ -43,49 +43,94 @@ function toggle(i){
         cards[i].style.overflow = 'hidden';
     }
 } 
+
+/*
+`
+    <div class = "produto">
+      <div class = "imagem"><img src="${json[index].url}"width = "150px" height = "150px"> </div>
+        <div class="descstrong"> 
+          ${json[index].nome}
+        </div>
+        <div class="text"> 
+          <strong class="descstrong">
+            Descrição:
+          </strong> 
+            ${json[index].descricaoDoProduto}<br>
+          <strong class="valor">Valor:</strong> R$${json[index].price}<br> 
+        </div>
+    </div>`
+*/ 
+
+/*
+` 
+            <li class="produto">
+                <span class="number">${pokemon.number}</span>
+                <div class="descstrong"> 
+                  ${json[index].nome}
+                </div>
+            
+                <div class="text"> 
+          <strong class="descstrong">
+            Descrição:
+          </strong> 
+            ${json[index].descricaoDoProduto}<br>
+          <strong class="valor">Valor:</strong> R$${json[index].price}<br> 
+        </div>
+                
+                    <div class = "imagem"><img src="${json[index].url}"width = "150px" height = "150px"> </div>
+                </div>
+            </li>`
+
+*/
 function montarHtml(json){
   let str = "";
   console.log(json)
   for (let index = 0; index < json.length; index++) {
-    str += `<div class = "produto"><div class = "imagem"><img src="${json[index].url}"width = "150px" height = "150px"> </div> <div class="descstrong"> ${json[index].nome}</div><div class="text"> <strong class="descstrong">Descrição:</strong> ${json[index].descricaoDoProduto}<br><strong class="valor">Valor:</strong> R$${json[index].price}<br> </div> </div>`;
+    str += ` 
+    <li class="produto">
+    <div class = "imagem"><img src="${json[index].url}"width = "150px" height = "150px"> </div>
+        <div class="descstrong"> 
+          ${json[index].nome}
+        </div>
+    
+        <div class="text"> 
+  <strong class="descstrong">
+    Descrição:
+  </strong> 
+    ${json[index].descricaoDoProduto}<br>
+  <strong class="valor">Valor:</strong> R$${json[index].price}<br> 
+</div>
+        
+        </div>
+    </li>`;
     
   }
-  document.getElementById("resultado").innerHTML = str;
+  document.getElementById("hardwareList").innerHTML = str;
 }
 
-function filtrar() {
+function filtrarPorTipo() {
   var tipo = document.getElementById("tipo").value;
-  var orcamento = document.getElementById("orcamento").value;
-  var uso = document.getElementById("uso").value;
-
-  let one = "";
-  let two = "";
-  let three = "";
 
   let str = "";
 
   fetch("http://localhost:8080/" + tipo)
   .then((response) => response.json())
   .then((json) => montarHtml(json))
-   
 
-  // for (let i = 0; i < pecas.length; i++) {
-  //   let pecass = pecas[i];
 
-  //   if (tipo === pecass.nome) {
-  //     if (orcamento === pecass.preco2) {
-  //       if (uso === pecass.tipo) {
-  //         one = pecass.imagem;
-  //         two = pecass.preco;
-  //         three = pecass.descricao;
+}
 
-  //         str += `<div class = "produto"> <div class = "imagem">${one} </div> <div class="text"> <strong class="descstrong">Descrição:</strong> ${three}<br><strong class="valor">Valor:</strong> R$${two},00<br> </div> </div>`;
-  //       }
-  //     }
-  //   }
-  // }
 
-  document.getElementById("resultado").innerHTML = str;
+function filtrarPorPreco() {
+  var tipo = document.getElementById("tipo").value;
+  var price = document.getElementById('valorOrcamento').value;
+
+  let str = "";
+
+  fetch("http://localhost:8080/" + tipo + "/" + price)
+  .then((response) => response.json())
+  .then((json) => montarHtml(json))
+  .catch((err) => alert(msgError))
 }
 const form = document.getElementById('form')
 const username = document.getElementById('username')
@@ -95,250 +140,12 @@ const passwordtwo = document.getElementById('passwordtwo')
 
 
 
-function checkInputs(){
-  const usernameValue = username.value.trim()
-  const emailValue = email.value.trim()
-  const passwordValue = password.value.trim()
-  const passwordtwoValue = passwordtwo.value.trim()
-
-  if(usernameValue === '') {
-    errorValidation(username, 'Preencha esse campo')
-  }
-  else{
-    successValidation(username)
-  }
-
-  if(emailValue === ''){
-    errorValidation(email, 'Preencha esse campo')
-  }
-  else{
-    successValidation(email)
-  }
-
-  if(passwordValue === '') {
-    errorValidation(password, 'Preencha esse campo')
-  }
-  else{
-    successValidation(password)
-  }
-
-  if(passwordtwoValue === '') {
-    errorValidation(passwordtwo, 'Preencha esse campo')
-  }
-  else if(passwordtwoValue !== passwordValue) {
-    errorValidation(passwordtwo, 'As senhas devem ser iguais')
-  }
-  else{
-    successValidation(passwordtwo)
-  }
-}
-
-function errorValidation(input, message) {
-  const formControl = input.parentElement;
-  const small = formControl.querySelector('small')
-
-  small.innerText = message
-  
-  formControl.className = 'form-control error'
-}
-
-function successValidation(input) {
-  const formControl = input.parentElement;
-
-  formControl.className = 'form-control success'
-}
-
-/* Banco de dados */
-
-function leDados (){
-  let strDados = localStorage.getItem('db');
-  let objDados = {};
-
-  if (strDados) {
-    objDados = JSON.parse (strDados);
-  }
-  else {
-    objDados = { cadastros: [
-
-      {nome: "Pedro Cattoni",     email: "pcattoni11@outlook.com", senha: "12042005" },
-      {nome: "Gabriela Medeiros", email: "gab23pm@gmail",          senha: "21101998" },
-      {nome: "Luisa Santos",      email: "lulusan@hotmail.com",    senha: "01052006" }
-                             ]}
-  }
-
-  return objDados;
-}
-
-function salvaDados (dados) {
-  localStorage.setItem ('db', JSON.stringify (dados));
-}
-
-function incluirCadastro (){
-  // Ler dados do localStorage
-  let objDados = leDados();
-  
-  // Incluir um novo Cadastro
-  let strNome = document.getElementById ('username').value;
-  let strEmail = document.getElementById('email').value;
-  let strSenha = document.getElementById('password').value;
-  let novoCadastro = {
-      nome: strNome,
-      email: strEmail,
-      senha: strSenha
-  };
-  objDados.cadastros.push (novoCadastro);
-
-  const usernameValue = username.value.trim()
-  const emailValue = email.value.trim()
-  const passwordValue = password.value.trim()
-  const passwordtwoValue = passwordtwo.value.trim()
-
-    if(passwordtwoValue !== passwordValue || usernameValue === '' || emailValue === '' || passwordValue === '' ) {
-        errorValidation(passwordtwo, ' ')
-    }
-    else{
-    // Salvar os dados no localStorage Novamente
-        salvaDados(objDados);
-    
-  // Atualiza os dados da tela
-        imprimeDados();
-    }
-}
-
-function imprimeDados () {
-  let tela = document.getElementById('tela');
-  let strHtml = '';
-  let objDados = leDados ();
-
-  for (i = 0; i < objDados.cadastros.length; i++) {
-    strHtml += `<p>${objDados.cadastros[i].nome} - ${objDados.cadastros[i].email} - ${objDados.cadastros[i].senha}</p>`
-  }
-
-  tela.innerHTML = strHtml;
-}
-
 // Config Botões
 
 let btn = document.querySelector('.fa-eye')
 
 
 
-function entrar(){
-  let usuario = document.querySelector('#usuario')
-  let userLabel = document.querySelector('#userLabel')
-  
-  let senha = document.querySelector('#senha')
-  let senhaLabel = document.querySelector('#senhaLabel')
-  
-  let msgError = document.querySelector('#msgError')
-  let listaUser = []
-  
-  let userValid = {
-    nome: '',
-    user: '',
-    senha: ''
-  }
-  
-  listaUser = JSON.parse(localStorage.getItem('listaUser'))
-  
-  listaUser.forEach((item) => {
-    if(usuario.value == item.userCad && senha.value == item.senhaCad){
-       
-      userValid = {
-         nome: item.nomeCad,
-         user: item.userCad,
-         senha: item.senhaCad
-       }
-      
-    }
-  })
-   
-  if(usuario.value == userValid.user && senha.value == userValid.senha){
-    window.location.href = 'index.html'
-    
-    let mathRandom = Math.random().toString(16).substr(2)
-    let token = mathRandom + mathRandom
-    
-    localStorage.setItem('token', token)
-    localStorage.setItem('userLogado', userValid.nome)
-  } else {
-    userLabel.setAttribute('style', 'color: red')
-    usuario.setAttribute('style', 'border-color: red')
-    senhaLabel.setAttribute('style', 'color: red')
-    senha.setAttribute('style', 'border-color: red')
-    msgError.setAttribute('style', 'display: block')
-    msgError.innerHTML = 'Usuário ou senha incorretos'
-    usuario.focus()
-  }
-  
-}
-btn = document.querySelector('#verSenha')
-let btnConfirm = document.querySelector('#verConfirmSenha')
-
-
-let nome = document.querySelector('#nome')
-let labelNome = document.querySelector('#labelNome')
-let validNome = false
-
-let usuario = document.querySelector('#usuario')
-let labelUsuario = document.querySelector('#labelUsuario')
-let validUsuario = false
-
-let senha = document.querySelector('#senha')
-let labelSenha = document.querySelector('#labelSenha')
-let validSenha = false
-
-let confirmSenha = document.querySelector('#confirmSenha')
-let labelConfirmSenha = document.querySelector('#labelConfirmSenha')
-let validConfirmSenha = false
-
-let msgError = document.querySelector('#msgError')
-let msgSuccess = document.querySelector('#msgSuccess')
-
-
-function cadastrar(){
-  if(validNome && validUsuario && validSenha && validConfirmSenha){
-    let listaUser = JSON.parse(localStorage.getItem('listaUser') || '[]')
-    
-    listaUser.push(
-    {
-      nomeCad: nome.value,
-      userCad: usuario.value,
-      senhaCad: senha.value
-    }
-    )
-    
-    localStorage.setItem('listaUser', JSON.stringify(listaUser))
-    
-   
-    msgSuccess.setAttribute('style', 'display: block')
-    msgSuccess.innerHTML = '<strong>Cadastrando usuário...</strong>'
-    msgError.setAttribute('style', 'display: none')
-    msgError.innerHTML = ''
-    
-    setTimeout(()=>{
-        window.location.href = 'signin.html'
-    }, 3000)
-  
-    
-  } else {
-    msgError.setAttribute('style', 'display: block')
-    msgError.innerHTML = '<strong>Preencha todos os campos corretamente antes de cadastrar</strong>'
-    msgSuccess.innerHTML = ''
-    msgSuccess.setAttribute('style', 'display: none')
-  }
-}
-document.addEventListener('DOMContentLoaded', function() {
-  const perfil = JSON.parse(localStorage.getItem('perfil'));
-
-  if (perfil) {
-    const usernameSpan = document.querySelector('#username');
-    const userSpan = document.querySelector('#user');
-
-    usernameSpan.textContent = perfil.nome;
-    userSpan.textContent = perfil.user;
-  }
-});
 
 
 

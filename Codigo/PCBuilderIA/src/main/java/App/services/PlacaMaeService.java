@@ -9,11 +9,21 @@ import com.google.gson.reflect.TypeToken;
 
 import App.dao.PlacaMaeDAO;
 import App.models.Hardware;
+import spark.Request;
 
 public class PlacaMaeService {
     public PlacaMaeDAO placaMaeDAO = new PlacaMaeDAO();
      public JsonArray getAll() {
         List<Hardware> listProcessadores = placaMaeDAO.getListPlacaMae();
+        Gson gson = new Gson();
+        JsonElement element = gson.toJsonTree(listProcessadores , new TypeToken<List<Hardware>>() {}.getType());
+        JsonArray jsonArray = element.getAsJsonArray();
+        
+        return jsonArray;
+    }
+    public JsonArray getListByPrice(Request request) {
+        double price = Double.parseDouble(request.params(":price")); 
+        List<Hardware> listProcessadores = placaMaeDAO.getListByPrice(price);
         Gson gson = new Gson();
         JsonElement element = gson.toJsonTree(listProcessadores , new TypeToken<List<Hardware>>() {}.getType());
         JsonArray jsonArray = element.getAsJsonArray();

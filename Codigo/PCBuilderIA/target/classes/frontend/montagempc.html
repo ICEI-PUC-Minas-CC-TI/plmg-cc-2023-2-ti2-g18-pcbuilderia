@@ -42,33 +42,22 @@
   
         </div>
         
-        <div class="dois">
-  
-          <div for="orcamento"><b>Orçamento:</b></div>
-          <select id="orcamento">
-            <option value="selecionepeca">Selecione seu orçamento...</option>
-            <option value="baixo">Baixo</option>
-            <option value="medio">Médio</option>
-            <option value="alto">Alto</option>
-          </select>
-  
-        </div>
+
         
-        <div class="tres">
-  
-          <div for="uso"><b>Uso:</b></div>
-          <select id="uso">
-            <option value="selecionepeca">Selecione seu modo de uso...</option>
-            <option value="gamer">Gamer</option>
-            <option value="trabalho">Trabalho</option>
-          </select>
-  
+        <button onclick="filtrarPorTipo()">Procurar</button>
         </div>
-    
-        <button onclick="filtrar()">Procurar</button>
+   
       </div>  
+      <div id="boxOrcamento" class="searchItens">
+        <input id="valorOrcamento" type="text" placeholder="Filtar por Preço">
+        <button id="MandarOrcamento" onclick="filtrarPorPreco()">Filtrar</button>
+      </div>
+      
+      
+      <div id="resultado">
+        <ol id="hardwareList" class="hardwares"></ol>
+      </div>
     
-      <div id="resultado"></div>
     </section>
 
     <footer>
