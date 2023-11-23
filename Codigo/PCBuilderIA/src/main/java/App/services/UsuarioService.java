@@ -78,10 +78,6 @@ public class UsuarioService {
 	private Usuario getProfileByLogin(String login) {
 		return usuarioDAO.getProfileByLogin(login);
 	}
-	
 
-	// private Usuario getProfile(String login) {
-	// 	return usuarioDAO.getProfile(login);
-	// }
 
 }
