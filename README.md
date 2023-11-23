@@ -5,7 +5,7 @@
 ## Alunos integrantes da equipe
 
 * Thiago Cedro Silva de Souza
-* [Nome completo do aluno 2]
+* Hanna Rodrigues Chaves
 * [Nome completo do aluno 3]
 * [Nome completo do aluno 4]
 
