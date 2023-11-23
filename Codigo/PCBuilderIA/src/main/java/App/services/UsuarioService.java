@@ -6,7 +6,6 @@ import com.google.gson.Gson;
 
 import App.dao.UsuarioDAO;
 import App.dto.UsuarioDTO;
-import App.dto.UsuarioEditRequestDTO;
 import App.dto.UsuarioRequestDTO;
 import App.models.Usuario;
 import spark.*;

@@ -1,8 +1,11 @@
 package App.dao;
 
 public class ComputadorDAO extends DAO{
-    public DiscoRigidoDAO() {
+    public ComputadorDAO() {
         super();
         conectar();
     }
+
+
+    
 }

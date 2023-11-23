@@ -4,8 +4,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.print.attribute.HashDocAttributeSet;
-
 import App.models.Hardware;
 
 public class ProcessadorDAO extends DAO{
