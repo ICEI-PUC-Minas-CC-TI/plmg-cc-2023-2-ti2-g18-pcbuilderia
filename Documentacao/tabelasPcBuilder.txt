@@ -1,0 +1,133 @@
+tabela
+
+CREATE TABLE Processadores (
+    id SERIAL PRIMARY KEY,
+    modelo VARCHAR(255),
+    nome VARCHAR(255),
+    price DOUBLE PRECISION,
+    descricaoDoProduto TEXT
+);
+
+CREATE TABLE PlacaMae (
+    id SERIAL PRIMARY KEY,
+    modelo VARCHAR(255),
+    nome VARCHAR(255),
+    price DOUBLE PRECISION,
+    descricaoDoProduto TEXT
+);
+
+CREATE TABLE PlacaVideo (
+    id SERIAL PRIMARY KEY,
+    modelo VARCHAR(255),
+    nome VARCHAR(255),
+    price DOUBLE PRECISION,
+    descricaoDoProduto TEXT
+);
+
+CREATE TABLE MemoriaRAM (
+    id SERIAL PRIMARY KEY,
+    modelo VARCHAR(255),
+    nome VARCHAR(255),
+    price DOUBLE PRECISION,
+    descricaoDoProduto TEXT
+);
+
+CREATE TABLE DiscoRigido (
+    id SERIAL PRIMARY KEY,
+    modelo VARCHAR(255),
+    nome VARCHAR(255),
+    price DOUBLE PRECISION,
+    descricaoDoProduto TEXT
+);
+CREATE TABLE Fonte (
+    id SERIAL PRIMARY KEY,
+    modelo VARCHAR(255),
+    nome VARCHAR(255),
+    price DOUBLE PRECISION,
+    descricaoDoProduto TEXT
+);
+
+
+
+
+
+
+
+//////// inserceos processadores
+INSERT INTO Processadores (modelo, nome, price, descricaoDoProduto, imagem_url)
+VALUES 
+    ('Intel Core i5-9400F', 'Processador Intel Core i5-9400F', 999.95, 'Desempenho sólido para multitarefas e jogos.', 'https://images.kabum.com.br/produtos/fotos/sync_mirakl/148923/Processador-Intel-Core-I5-9400F-Coffee-Lake-2-9GHz-4-1GHz-Max-Turbo-Cache-9MB-LGA-1151-Sem-V-deo-BX80684I59400F_1699219727_gg.jpg'),
+    ('AMD Ryzen 7 3700X', 'Processador AMD Ryzen 7 3700X', 1649.95, 'Desempenho avançado para produtividade e jogos.', 'https://images.kabum.com.br/produtos/fotos/200591/kit-processador-amd-ryzen-7-3700x-placa-mae-galax-b550m_1629471743_gg.jpg'),
+    ('Intel Core i9-9900K', 'Processador Intel Core i9-9900K', 2499.95, 'Alto desempenho para jogos e tarefas exigentes.', 'https://images.kabum.com.br/produtos/fotos/102808/processador-intel-core-i9-9900kf-coffee-lake-refresh-geracao-cache-16mb-3-6ghz-5-0ghz-max-turbo-lga-1151-bx80684i99900kf_1564862447_gg.jpg'),
+    ('AMD Ryzen 5 5600X', 'Processador AMD Ryzen 5 5600X', 1499.95, 'Desempenho eficiente para jogos e multitarefas.', 'https://images.kabum.com.br/produtos/fotos/sync_mirakl/355263/Processador-AMD-Ryzen-5-5600-3-5GHz-4-4GHz-Turbo-AM4-100-100000927BOX_1699219732_gg.jpg'),
+    ('Intel Core i7-10700K', 'Processador Intel Core i7-10700K', 1999.95, 'Desempenho poderoso para jogos e criação de conteúdo.', 'https://images.kabum.com.br/produtos/fotos/112996/processador-intel-core-i7-10700k-cache-16mb-3-8ghz-lga-1200-bx8070110700k_1589208569_gg.jpg'),
+    ('AMD Ryzen 9 5900X', 'Processador AMD Ryzen 9 5900X', 2749.95, 'Desempenho excepcional para gamers e criadores.', 'https://images.kabum.com.br/produtos/fotos/129460/processador-amd-ryzen-9-5900x-cache-70mb-3-8ghz-4-7ghz-max-turbo-am4-100-100000061wof_1604585280_gg.jpg'),
+    ('Intel Core i3-10100', 'Processador Intel Core i3-10100', 649.95, 'Opção acessível para tarefas do dia a dia.', 'https://images.kabum.com.br/produtos/fotos/129960/processador-intel-core-i3-10100f-cache-6mb-4-30-ghz-lga-1200-i3-10100f_1603394030_gg.jpg'),
+    ('AMD Ryzen 3 3300X', 'Processador AMD Ryzen 3 3300X', 749.95, 'Desempenho básico para jogos e produtividade.', 'https://images.kabum.com.br/produtos/fotos/sync_mirakl/161591/Processador-AMD-Ryzen-3-3200G-3-6GHz-4GHz-Max-Turbo-Cache-6MB-AM4-YD3200C5FHBOX_1699219732_gg.jpg'),
+    ('Intel Pentium Gold G5400', 'Processador Intel Pentium Gold G5400', 349.95, 'Ideal para tarefas simples e navegação na web.', 'https://images.kabum.com.br/produtos/fotos/sync_mirakl/504118/Processador-Intel-Pentium-Gold-G6400-4-0GHz-2-Cores-4-Threads-LGA-1200_1698262693_gg.jpg'),
+
+
+// placa mae 
+
+INSERT INTO PlacaMae (modelo, nome, price, descricaoDoProduto, imagem_url)
+VALUES
+    ('ASUS ROG Strix Z590-E Gaming', 'Placa-mãe ASUS ROG Strix Z590-E Gaming', 2899.90,'Placa-mãe para processadores AMD Ryzen com PCIe 4.0 e design robusto.', 'https://images.kabum.com.br/produtos/fotos/151559/placa-mae-asus-rog-strix-z590-e-gaming-wifi-intel-socket-lga1200-atx-ddr4-rgb-aura-sync-90mb1640-m0eay0_1615387462_gg.jpg'),
+    ('Gigabyte B450 AORUS Pro', 'Placa-mãe Gigabyte B550 AORUS Pro', 1399.90, 'Placa-mãe para processadores AMD Ryzen com PCIe 4.0 e design robusto.', 'https://images.kabum.com.br/produtos/fotos/98075/98075_4_1534864577_gg.jpg'),
+    ('MSI MAG B460 TOMAHAWK', 'Placa-mãe MSI MAG B460 TOMAHAWK', 899.90, 'Placa-mãe para processadores Intel de 10ª geração com áudio aprimorado e conectividade rápida.', 'https://images.kabum.com.br/produtos/fotos/114323/placa-mae-msi-mag-b460-tomahawk-intel-lga-1200-atx_1595014553_gg.jpg'),
+    ('ASRock B450M Steel Legend', 'Placa-mãe ASRock B450M Steel Legend', 699.90, 'Placa-mãe para processadores AMD Ryzen com design elegante e suporte a memória DDR4-3533+ OC.', 'https://images.kabum.com.br/produtos/fotos/sync_mirakl/133767/Placa-M-e-AsRock-B450M-Steel-Legend-AMD-AM4-mATX-DDR4_1699898890_gg.jpg'),
+    ('ASUS TUF Gaming B560M-PLUS', 'Placa-mãe ASUS TUF Gaming B560M-PLUS', 999.90, 'Placa-mãe para processadores Intel de 10ª e 11ª geração com durabilidade militar e áudio imersivo.', 'https://images.kabum.com.br/produtos/fotos/151568/placa-mae-asus-tuf-gaming-b560m-plus-intel-socket-lga1200-microatx-ddr4-90mb1780-m0eay0_1626119835_gg.jpg'),
+    ('Biostar Racing X570GT8', 'Placa-mãe Biostar Racing X570GT8', 1899.90, 'Placa-mãe para processadores AMD Ryzen com PCIe 4.0 e dissipador térmico eficiente.', 'https://images.kabum.com.br/produtos/fotos/112813/placa-mae-gigabyte-aorus-z490-aorus-elite-ac-intel-lga-1200-atx-ddr4_1589983087_gg.jpg'),
+    ('Gigabyte Z490 AORUS Elite AC', 'Placa-mãe Gigabyte Z490 AORUS Elite AC', 1599.90, 'Placa-mãe para processadores Intel de 10ª e 11ª geração com Wi-Fi 6 integrado e RGB Fusion 2.0.', 'https://images.kabum.com.br/produtos/fotos/sync_mirakl/191128/Placa-M-e-AsRock-H470-Steel-Legend-Intel-LGA-1200-ATX-DDR4-90-MXBCK0-A0UAYZ_1699219711_gg.jpg'),
+    ('ASRock H470 Steel Legend', 'Placa-mãe ASRock H470 Steel Legend', 799.90, 'Placa-mãe para processadores Intel de 10ª geração com design elegante e áudio Purity Sound 4.', 'https://images.kabum.com.br/produtos/fotos/114338/placa-mae-msi-b550m-pro-vdh-wifi-amd-am4-matx_1594996441_gg.jpg'),
+    ('MSI B550M PRO-VDH WiFi', 'Placa-mãe MSI B550M PRO-VDH WiFi', 1199.90, 'Placa-mãe para processadores AMD Ryzen com Wi-Fi 6 integrado e Core Boost para desempenho aprimorado.', 'https://images.kabum.com.br/produtos/fotos/463545/placa-mae-asus-prime-h510m-a-r2-0-intel-atx-ddr4-lga-1200-h470-90mb1fp0-m0eay0_1699384935_gg.jpg'),
+    ('ASUS Prime H310M-E R2.0', 'Placa-mãe ASUS Prime H310M-E R2.0', 449.90, 'Placa-mãe para processadores Intel de 8ª e 9ª geração com proteção 5X e BIOS UEFI.', 'https://images.kabum.com.br/produtos/fotos/463545/placa-mae-asus-prime-h510m-a-r2-0-intel-atx-ddr4-lga-1200-h470-90mb1fp0-m0eay0_1699384935_gg.jpg');
+
+
+// memoria ram INSERT INTO MemoriaRAM (modelo, nome, price, descricaoDoProduto, imagem_url)
+VALUES
+    ('Corsair Vengeance LPX 16GB (2 x 8GB) DDR4-3200', 'Memória RAM Corsair Vengeance LPX 16GB (2 x 8GB) DDR4-3200', 699.90, 'Módulos de memória DDR4 de alto desempenho para sistemas de jogos e multitarefas.', 'https://images.kabum.com.br/produtos/fotos/110769/memoria-corsair-vengeance-lpx-16gb-2x8gb-2400mhz-ddr4-c16-black-cmk16gx4m2a2400c16_1589903798_gg.jpg'),
+    ('Crucial Ballistix RGB 32GB (2 x 16GB) DDR4-3600', 'Memória RAM Crucial Ballistix RGB 32GB (2 x 16GB) DDR4-3600', 999.90, 'Módulos de memória DDR4 com iluminação RGB personalizável para entusiastas.', 'https://images.kabum.com.br/produtos/fotos/sync_mirakl/237374/Mem-ria-Crucial-Ballistix-8GB-3200MHz-DDR4-CL16-Preta_1684450696_gg.jpg'),
+    ('G.Skill Ripjaws V 16GB (2 x 8GB) DDR4-3000', 'Memória RAM G.Skill Ripjaws V 16GB (2 x 8GB) DDR4-3000', 599.90, 'Módulos de memória DDR4 com design elegante e desempenho confiável para PCs modernos.', 'https://http2.mlstatic.com/D_NQ_NP_860881-MLA41509729111_042020-O.webp'),
+    ('HyperX Fury RGB 32GB (2 x 16GB) DDR4-3200', 'Memória RAM HyperX Fury RGB 32GB (2 x 16GB) DDR4-3200', 899.90, 'Módulos de memória DDR4 com iluminação RGB intensa e desempenho rápido para jogadores.', 'https://images.kabum.com.br/produtos/fotos/sync_mirakl/467689/Mem-ria-Hyperx-Fury-Gamer-DDR4-16GB-2133Mhz_1690851490_gg.jpg');
+  
+    ('AMD Athlon 3000G', 'Processador AMD Athlon 3000G', 249.95, 'Opção econômica para computadores básicos.', 'https://images.kabum.com.br/produtos/fotos/sync_mirakl/161581/Processador-AMD-Athlon-3000G-3-5GHz-Cache-5MB-Dual-Core-4-Thread-AM4-Radeon-VEGA-3-YD3000C6FBBOX_1699219706_gg.jpg');
+
+//fonte 
+INSERT INTO Fonte (modelo, nome, price, descricaoDoProduto, imagem_url)
+VALUES
+    ('EVGA SuperNOVA 700 BR', 'Fonte de Alimentação EVGA SuperNOVA 750 G3', 699.90, 'Fonte modular de 750W com certificação 80 PLUS Gold para eficiência energética.', 'https://http2.mlstatic.com/D_NQ_NP_727771-MLA45975822029_052021-O.webp'),
+    ('Corsair RM750x', 'Fonte de Alimentação Corsair RM750x', 799.90, 'Fonte modular de 750W com certificação 80 PLUS Gold e ventoinha com controle térmico.', 'https://images.kabum.com.br/produtos/fotos/156945/fonte-corsair-rm750x-750w-80-plus-gold-modular-preto-cp-9020199-ww_1628281649_gg.jpg'),
+    ('Seasonic Focus GX-850', 'Fonte de Alimentação Seasonic Focus GX-650', 599.90, 'Fonte modular de 650W com certificação 80 PLUS Gold e ventoinha silenciosa de 120mm.', 'https://images.kabum.com.br/produtos/fotos/125323/fonte-seasonic-850w-80-plus-gold-semi-modular-focus-gm-850_1599250333_gg.jpg'),
+    ('Thermaltake Toughpower Grand RGB 850W', 'Fonte de Alimentação Thermaltake Toughpower Grand RGB 850W', 899.90, 'Fonte modular de 850W com certificação 80 PLUS Gold e iluminação RGB personalizável.', 'https://images.kabum.com.br/produtos/fotos/sync_mirakl/453043/Fonte-Thermaltake-Toughpower-GF2-850W-ArGB-Gold-Modular-PE-Ps-Tpd-0850f3faGB-2_1695139662_gg.jpg'),
+    ('Cooler Master MWE Gold 650 V2', 'Fonte de Alimentação Cooler Master MWE Gold 650 V2', 549.90, 'Fonte modular de 650W com certificação 80 PLUS Gold e cabos flat para organização.', 'https://images.kabum.com.br/produtos/fotos/465298/fonte-cooler-master-mwe-bronze-v2-full-range-650w-80-plus-bronze-nao-modular-pfc-ativo-bivolt-preto-mpe-6501-acaaw-bbr_1697489277_gg.jpg');
+
+/// placa de video
+INSERT INTO PlacaVideo (modelo, nome, price, descricaoDoProduto, imagem_url)
+VALUES
+    ('NVIDIA GeForce RTX 3080', 'Placa de Vídeo NVIDIA GeForce RTX 3080', 5699.90, 'Placa de vídeo de alta performance com 10 GB de memória GDDR6X e suporte a ray tracing.', 'https://images.kabum.com.br/produtos/fotos/399025/placa-de-video-pny-nvidia-geforce-rtx-3080-xlr8-gaming-revel-epic-x-10-gb-gddr6x-lhr-rgb-dlss-ray-tracing-vcg308010ltfxppb1_1669988745_gg.jpg'),
+    ('AMD Radeon RX 6800 XT', 'Placa de Vídeo AMD Radeon RX 6800 XT', 5799.90, 'Placa de vídeo para jogos com 16 GB de memória GDDR6 e tecnologia RDNA2 para gráficos avançados.', 'https://images.kabum.com.br/produtos/fotos/131631/placa-de-video-asrock-amd-radeon-rx-6800-xt-16g-gddr6-radeon-rx6800xt-pgd-16go_1647895661_gg.jpg'),
+    ('NVIDIA GeForce GTX 1660 Super', 'Placa de Vídeo NVIDIA GeForce GTX 1660 Super', 1599.90, 'Placa de vídeo de médio alcance com 6 GB de memória GDDR5 para jogos em 1080p.', 'https://images.kabum.com.br/produtos/fotos/sync_mirakl/171588/Placa-de-V-deo-Galax-NVIDIA-GeForce-GTX-1660-Super-6GB-GDDR6-192-Bits-60SRL7DSY91S_1700492889_gg.jpg'),
+    ('ASUS Dual GeForce RTX 3060 Ti', 'Placa de Vídeo ASUS Dual GeForce RTX 3060 Ti', 3499.90, 'Placa de vídeo para jogos com 8 GB de memória GDDR6 e design dual-fan para refrigeração eficiente.', 'https://images.kabum.com.br/produtos/fotos/212530/placa-de-video-asus-dual-nvidia-geforce-rtx-3060-ti-o8g-mini-v2-oc-rgb-8gb-gddr6-lhr-dlss-ray-tracing-90yv0ft2-m0na00_1633963638_gg.jpg'),
+    ('MSI Radeon RX 6750 XT Gaming X', 'Placa de Vídeo MSI Radeon RX 5700 XT Gaming X', 2599.90, 'Placa de vídeo com 8 GB de memória GDDR6 e design de resfriamento personalizado para alto desempenho.', 'https://images.kabum.com.br/produtos/fotos/475438/placa-de-video-rx-6750-xt-mech-2x-12g-v1-radeon-12gb-gddr6-freesync-dual-fan_1689965385_gg.jpg'),
+    ('Gigabyte AORUS GeForce RTX 3070', 'Placa de Vídeo Gigabyte AORUS GeForce RTX 3070', 4899.90, 'Placa de vídeo com 8 GB de memória GDDR6 e sistema de resfriamento avançado WindForce 3X.', 'https://images.kabum.com.br/produtos/fotos/130912/placa-de-video-gigabyte-nvidia-aorus-geforce-rtx-3070-master-8g-gddr6-gv-n3070aorus-m-8gd_1604691901_gg.jpg'),
+    ('ZOTAC Gaming GeForce GTX 1650 Super', 'Placa de Vídeo ZOTAC Gaming GeForce GTX 1650 Super', 1199.90, 'Placa de vídeo de entrada com 4 GB de memória GDDR5 e tamanho compacto para sistemas menores.', 'https://images.kabum.com.br/produtos/fotos/110396/placa-de-video-zotac-gaming-nvidia-geforce-gtx-1660-super-twin-fan-6gb-gddr6-zt-t16620f-10l_1582210172_gg.jpg'),
+    ('Sapphire Nitro+ Radeon RX 6700 XT', 'Placa de Vídeo Sapphire Nitro+ Radeon RX 6700 XT', 3699.90, 'Placa de vídeo com 12 GB de memória GDDR6 e sistema de resfriamento avançado para jogos exigentes.', 'https://images.kabum.com.br/produtos/fotos/153195/placa-de-video-sapphire-nitro-radeon-rx-6700-xt-12gb-11306-01-20g_1616070270_gg.jpg'),
+    ('EVGA GeForce GT 1030', 'Placa de Vídeo EVGA GeForce GT 1030', 699.90, 'Placa de vídeo de baixo custo com 2 GB de memória GDDR5 para tarefas básicas e jogos leves.', 'https://images.kabum.com.br/produtos/fotos/91090/91090_index_gg.jpg'),
+    ('PowerColor Red Devil Radeon RX 6600 XT', 'Placa de Vídeo PowerColor Red Devil Radeon RX 6600 XT', 2799.90, 'Placa de vídeo para jogos com 8 GB de memória GDDR6 e design de resfriamento avançado.', 'https://images.kabum.com.br/produtos/fotos/235984/placa-de-video-asrock-amd-radeon-rx-6600-cld-8g-8gb-90-ga2rzz-00uanf_1634738812_gg.jpg');
+
+// DiscoRigido
+
+INSERT INTO DiscoRigido (modelo, nome, price, descricaoDoProduto, imagem_url)
+VALUES
+    ('Seagate Barracuda 2TB', 'Disco Rígido Seagate Barracuda 2TB', 499.90, 'Disco rígido de 3,5 polegadas com capacidade de armazenamento de 2TB para armazenamento confiável de dados.', 'https://images.kabum.com.br/produtos/fotos/95803/95803_1522867513_index_gg.jpg'),
+    ('Western Digital Blue 1TB', 'Disco Rígido Western Digital Blue 1TB', 349.90, 'Disco rígido de 3,5 polegadas com capacidade de 1TB para armazenamento de dados de alta velocidade.', 'https://images.kabum.com.br/produtos/fotos/63735/63735_1433187476_gg.jpg'),
+    ('Samsung 870 EVO 500GB', 'SSD Samsung 870 EVO 500GB', 599.90, 'Unidade de estado sólido SATA de 2,5 polegadas com capacidade de 500GB para desempenho rápido e confiável.', 'https://images.kabum.com.br/produtos/fotos/sync_mirakl/352075/SSD-Samsung-870-Evo-500GB-SATA-2-5-Leitura-560MBps-E-Grava-o-530MBps-Mz-77e500b-Am_1682519299_gg.jpg'),
+    ('Seagate IronWolf 4TB', 'Disco Rígido Seagate IronWolf 4TB', 799.90, 'Disco rígido de 3,5 polegadas projetado para NAS com capacidade de 4TB e tecnologia de rotação variável.', 'https://images.kabum.com.br/produtos/fotos/415964/hd-seagate-ironwolf-4tb-nas-3-5-sata-st4000vn006_1674649252_gg.jpg'),
+    ('Crucial MX500 1TB', 'SSD Crucial MX500 1TB', 799.90, 'Unidade de estado sólido SATA de 2,5 polegadas com capacidade de 1TB para desempenho e confiabilidade superiores.', 'https://images.kabum.com.br/produtos/fotos/sync_mirakl/167492/SSD-Crucial-Bx500-1TB-Sata-6GB-s-2-5-Leitura-540-MB-s-Escrita-500-MB-s-Preto-Ct1000bx500ssd1_1691585295_gg.jpg'),
+    ('Toshiba P300 4TB', 'Disco Rígido Toshiba P300 3TB', 599.90, 'Disco rígido de 3,5 polegadas com capacidade de 3TB para armazenamento de grande volume de dados.', 'https://images.kabum.com.br/produtos/fotos/sync_mirakl/338520/HD-Interno-Toshiba-4TB-N300-NAS-3-5-HDWG440XZSTAI_1691672308_gg.jpg'),
+    ('Kingston A2000 250GB NVMe', 'SSD Kingston A2000 250GB NVMe', 299.90, 'Unidade de estado sólido NVMe M.2 com capacidade de 250GB para desempenho ultrarrápido.', 'https://images.kabum.com.br/produtos/fotos/103379/ssd-kingston-a2000-250gb-m-2-nvme-leitura-2000mb-s-gravacao-1100mb-s-sa2000m8-250g_1566242448_gg.jpg'),
+    ('WD Black 6TB', 'Disco Rígido WD Black 6TB', 1499.90, 'Disco rígido de 3,5 polegadas com capacidade de 6TB para gamers e profissionais criativos.', 'https://images.kabum.com.br/produtos/fotos/sync_mirakl/502788/Disco-R-gido-Interno-WD-Black-2TB-Performance-Classe-7200RPM-SATA-6GB-s-64MB-Cache-3-5-Polegadas-Wd2003fzex_1697740094_gg.jpg'),
+    ('ADATA SU630 480GB', 'SSD ADATA SU630 480GB', 399.90, 'Unidade de estado sólido SATA de 2,5 polegadas com capacidade de 480GB para melhorar o desempenho do sistema.', 'https://images.kabum.com.br/produtos/fotos/sync_mirakl/165768/SSD-480GB-Adata-Su630-SATA-2-5-ASU630SS-480GQ_1699627096_gg.jpg'),
+    ('HGST Ultrastar 8TB', 'Disco Rígido HGST Ultrastar 8TB', 1999.90, 'Disco rígido empresarial de 3,5 polegadas com capacidade de 8TB e confiabilidade aprimorada.', 'https://images.kabum.com.br/produtos/fotos/228602/hd-externo-seagate-expansion-5tb-usb-ps4-xbox-preto-stkm5000400_1631631080_gg.jpg');
+
+
