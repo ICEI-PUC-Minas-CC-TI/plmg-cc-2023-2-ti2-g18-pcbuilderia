@@ -1,31 +1,29 @@
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
-title: 
+title: PCBuilderIA
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
+  - family-names: de Freitas Marques
+    given-names: Ângelo Gabriel
+  - family-names: Rodrigues Chaves
+    given-names: Hanna
+  - family-names: Portes Araújo Cattoni
+    given-names: Pedro Augusto 
+  - family-names: Cedro Silva de Souza 
+    given-names: Thiago
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Baroni de Carvalho
+    given-names: Rodrigo 
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Amy Saldanha Rivero
+    given-names: Ilo
 keywords:
-  - 
-  - 
-repository-code: 
+  - Montagem de PCs
+  - PC Gamer
+  - PC de trabalho
+  - Valores de Peças
+repository-code: https://github.com/ICEI-PUC-Minas-CC-TI/plmg-cc-2023-2-ti2-g18-pcbuilderia
 license: CC-BY-4.0
 version: 1.0.0
-date-released: 2022-07-14
+date-released: 2023-12-12
