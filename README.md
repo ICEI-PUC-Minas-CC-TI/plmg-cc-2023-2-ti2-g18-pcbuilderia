@@ -8,7 +8,7 @@ Ao entrar neste universo digital,os usuários são recebidos por uma interface i
 * Thiago Cedro Silva de Souza
 * Hanna Rodrigues Chaves
 * Angelo Marques
-* Pedro Catotti
+* Pedro Cattoni
 
 ## Professores responsáveis
 
